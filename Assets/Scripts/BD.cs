@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BD
+﻿
+public static class BDNames
 {
-    Dictionary<>
+    #region Axes
+    public static string Horizontal = "Horizontal";
+    #endregion
 }
