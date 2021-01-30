@@ -1,18 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerSO : MonoBehaviour
+[CreateAssetMenu(fileName ="Player")]
+public class PlayerSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [Min(1)] public int startLifes;
+
+    [Header("Счет")]
+    [Range(0,0)] public int score;
+    [Range(0, 0)] public int bestScore;
+    [Range(0, 0)] public int currentScore;
+
+    public void Zeroing()
     {
-        
+        score = 0;
+        bestScore = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateBestScore()
     {
-        
+        if (currentScore > bestScore) bestScore = currentScore;
+        currentScore = 0;
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
+        currentScore += value;
     }
 }

@@ -8,5 +8,7 @@ public static class BDNames
     #region Tags
     public static string Ball = "Ball";
     public static string Wall = "Wall";
+    public static string Player = "Player";
+    public static string Respawn = "Respawn";
     #endregion
 }

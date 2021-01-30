@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     [SerializeField] PlayerMove playerPlatform;
     [SerializeField, Min(1)] float startedSpeed;
+    [SerializeField] PlayerManager player;
 
     Rigidbody2D _rb;
     bool _isStarted;
@@ -15,7 +14,7 @@ public class Ball : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Reset()
+    public void Zeroing()
     {
         _isStarted = false;
     }
@@ -48,6 +47,16 @@ public class Ball : MonoBehaviour
     void GetRandomStartedForce()
     {
         Vector2 force = new Vector2(Random.Range(-100, 101), Random.Range(20, 101)).normalized;
+        _rb.velocity = Vector2.zero;
         _rb.AddForce(force * startedSpeed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == BDNames.Respawn)
+        {
+            player.Hit();
+            _isStarted = false;
+        }
     }
 }
