@@ -19,13 +19,7 @@ public class PlayerManager : MonoBehaviour
         _life = player.startLifes;
         UpdateLife();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void Hit()
     {
         _life--;

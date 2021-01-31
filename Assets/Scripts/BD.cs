@@ -10,5 +10,6 @@ public static class BDNames
     public static string Wall = "Wall";
     public static string Player = "Player";
     public static string Respawn = "Respawn";
+    public static string BlockInstantiater = "Block Instantiater";
     #endregion
 }
