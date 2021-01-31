@@ -62,10 +62,10 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.tag == BDNames.Wall)
         {
             _touchWallCount++;
-            if (_touchWallCount> 5)
+            if (_touchWallCount > 5)
             {
-                Zeroing();
                 GetRandomStartedForce();
+                _touchWallCount = 0;
             }
         }
 
