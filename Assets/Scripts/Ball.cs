@@ -26,12 +26,18 @@ public class Ball : MonoBehaviour
     {
         switch (_isStarted)
         {
+            case true:
+
+                UpdateVelocity();
+
+                break;
+
             case false:
+
                 PasteToPlayerPlatform();
+
                 break;
         }
-
-        UpdateVelocity();
     }
 
     void UpdateVelocity()

@@ -51,7 +51,7 @@ public class BlockInstantiater : MonoBehaviour
         {
             bool randomize = false;
             GameObject block = blocksType[0];
-            _x = (maxX + minX - _countBlocksInLines[i]) / 2;
+            _x = (maxX + minX - _countBlocksInLines[i] / 2f) / 2;
 
             if (randomInLine && (i % 2 == 1) && (lineCount % 2 == 1)) randomize = true;
             else block = blocksType.Ind(Random.Range(0, blockCount));
