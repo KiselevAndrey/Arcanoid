@@ -8,18 +8,28 @@ public class Ball : MonoBehaviour
 
     Rigidbody2D _rb;
     bool _isStarted;
-    int _touchWallCount;
+    int _touchWallCount, _touchPlayerCount;
+    float _minVelocity, _maxVelocity;
+    float _currentMinVelocity, _currentMaxVelocity;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _minVelocity = 10;
+        _maxVelocity = 15;
     }
 
     public void Zeroing()
     {
-        _rb.velocity = Vector2.zero;
+        _rb.velocity *= 0f;
         _isStarted = false;
+        ZeroingTouches();
+    }
+
+    void ZeroingTouches()
+    {
         _touchWallCount = 0;
+        _touchPlayerCount = 0;
     }
     
     private void Update()
@@ -42,8 +52,8 @@ public class Ball : MonoBehaviour
 
     void UpdateVelocity()
     {
-        if (_rb.velocity.magnitude < 10) _rb.velocity *= 1.2f;
-        else if (_rb.velocity.magnitude > 20) _rb.velocity *= 0.8f;
+        if (_rb.velocity.magnitude < _currentMinVelocity) _rb.velocity *= 1.2f;
+        else if (_rb.velocity.magnitude > _currentMaxVelocity) _rb.velocity *= 0.8f;
     }
 
     void PasteToPlayerPlatform()
@@ -71,7 +81,7 @@ public class Ball : MonoBehaviour
             if (_touchWallCount > 5)
             {
                 GetRandomStartedForce();
-                _touchWallCount = 0;
+                ZeroingTouches();
             }
         }
 
@@ -80,11 +90,30 @@ public class Ball : MonoBehaviour
             player.Hit();
             Zeroing();
         }
+
+        else if(collision.gameObject.tag == BDNames.Player)
+        {
+            _touchPlayerCount++;
+            if(_touchPlayerCount > 3)
+            {
+                GetRandomStartedForce();
+                _touchPlayerCount = 0;
+            }
+            _touchWallCount = 0;
+        }
         else
         {
-            _touchWallCount = 0;
+            ZeroingTouches();
         }
     }
 
+    public void ChangeVelocity(int difficultLvl)
+    {
+        _currentMinVelocity = _minVelocity / 2 + difficultLvl - 1;
+        _currentMaxVelocity = _maxVelocity / 2 + difficultLvl - 1;
+
+        if (_currentMinVelocity > _minVelocity) _currentMinVelocity = _minVelocity;
+        if (_currentMaxVelocity > _maxVelocity) _currentMaxVelocity = _maxVelocity;
+    }
 
 }

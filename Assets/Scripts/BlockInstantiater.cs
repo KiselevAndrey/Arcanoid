@@ -26,7 +26,7 @@ public class BlockInstantiater : MonoBehaviour
     float _x, _y;
     int _maxRows, _maxColumns;
 
-    Ball ball;
+    Ball _ball;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class BlockInstantiater : MonoBehaviour
         _maxColumns = (int)((maxX - minX) / blockSizeInWorldMatrix);
         _maxRows = (int)((maxY - minY) / blockSizeInWorldMatrix);
 
-        ball = GameObject.FindGameObjectWithTag(BDNames.Ball).GetComponent<Ball>();
+        _ball = GameObject.FindGameObjectWithTag(BDNames.Ball).GetComponent<Ball>();
 
         NewRound();
     }
@@ -70,7 +70,7 @@ public class BlockInstantiater : MonoBehaviour
             _y -= blockSizeInWorldMatrix;
         }
 
-        ball.Zeroing();
+        _ball.Zeroing();
     }
 
     // Высчитывает сколько блоков будет в строке
@@ -114,6 +114,8 @@ public class BlockInstantiater : MonoBehaviour
             UpdateComplexityFactor(1);
             UpdateDifficult();
         }
+
+        _ball.ChangeVelocity(difficultLvl);
     }
 
     // обновление сложности
