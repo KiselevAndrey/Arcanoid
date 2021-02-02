@@ -6,38 +6,35 @@ public class Block : MonoBehaviour
     [SerializeField, Min(1)] public int lifes;
     [SerializeField] public int score;
 
-    PlayerManager _player;
+    [SerializeField] Collider2D coll2D;
+
+   // PlayerManager _player;
     BlockInstantiater _instantiater;
+    string playerName;
 
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<PlayerManager>();
         _instantiater = GameObject.FindGameObjectWithTag(BDNames.BlockInstantiater).GetComponent<BlockInstantiater>();
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    bool HitPunch(int damage, string playerName)
     {
-    }
+        int currentLife = lifes - damage;
 
-    bool Hit(int damage)
-    {
-        
-        if(damage > lifes)
+        // пробития нет
+        if(currentLife > 0)
         {
+            lifes = currentLife;
+            _instantiater.GiveScoreToPlayer(playerName, lifes - damage);
             return false;
         }
+        // пробило
         else
         {
-            return true;
-        }
-        lifes -= damage;
-        _player.AddScore(damage);
-
-        if (lifes <= 0)
-        {
-            _player.AddScore(score);
-            _instantiater.Hit();
+            _instantiater.GiveScoreToPlayer(playerName, damage - currentLife + score);
+            _instantiater.BlockDied();
             Destroy(gameObject);
+            return true;
         }
     }
 
@@ -45,7 +42,17 @@ public class Block : MonoBehaviour
     {
         if (collision.gameObject.tag == BDNames.Ball)
         {
-            Hit(1);
+            Ball ball = collision.GetComponent<Ball>();
+            if(!HitPunch(ball.damage, ball.playerName))
+                coll2D.isTrigger = false;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == BDNames.Ball)
+        {
+            coll2D.isTrigger = true;
         }
     }
 }

@@ -144,7 +144,7 @@ public class BlockInstantiater : MonoBehaviour
         block.score = Random.Range(difficultLvl - 1, difficultLvl + 2);
     }
 
-    public void Hit()
+    public void BlockDied()
     {
         _deathCount++;
         CheckKillAll();
@@ -159,5 +159,10 @@ public class BlockInstantiater : MonoBehaviour
 
             NewRound();
         }
+    }
+
+    public void GiveScoreToPlayer(string playerName, int score)
+    {
+
     }
 }

@@ -5,6 +5,8 @@ public class Ball : MonoBehaviour
     [SerializeField] PlayerMove playerPlatform;
     [SerializeField, Min(1)] float startedSpeed;
     [SerializeField] PlayerManager player;
+    public int damage = 1;
+    public string playerName;
 
     Rigidbody2D _rb;
     bool _isStarted;
@@ -115,5 +117,4 @@ public class Ball : MonoBehaviour
         if (_currentMinVelocity > _minVelocity) _currentMinVelocity = _minVelocity;
         if (_currentMaxVelocity > _maxVelocity) _currentMaxVelocity = _maxVelocity;
     }
-
 }
