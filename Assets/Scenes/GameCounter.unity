@@ -1127,8 +1127,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.13333893
-        value: 0.69999886
+        time: 0
+        value: 0.6428544
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1136,13 +1136,13 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.88888884
+        time: 1
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.2225275
+        outSlope: 0.2225275
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.94546694
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -1355,7 +1355,7 @@ GameObject:
   - component: {fileID: 897259079}
   - component: {fileID: 897259078}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Player (2)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2728,7 +2728,7 @@ GameObject:
   - component: {fileID: 1998419876}
   - component: {fileID: 1998419878}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,22 +17,35 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == BDNames.Ball)
-        {
-            Hit();
-        }
     }
 
-    void Hit()
+    bool Hit(int damage)
     {
-        lifes--;
-        _player.AddScore(1);
+        
+        if(damage > lifes)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        lifes -= damage;
+        _player.AddScore(damage);
 
         if (lifes <= 0)
         {
             _player.AddScore(score);
             _instantiater.Hit();
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == BDNames.Ball)
+        {
+            Hit(1);
         }
     }
 }
