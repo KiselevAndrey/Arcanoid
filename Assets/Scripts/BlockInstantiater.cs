@@ -43,6 +43,7 @@ public class BlockInstantiater : MonoBehaviour
     {
         CheckDifficult();
         CalculateLines();
+        UpdateDifficult();
 
         _deathCount = 0;
 
@@ -116,6 +117,7 @@ public class BlockInstantiater : MonoBehaviour
         }
 
         _ball.ChangeVelocity(difficultLvl);
+        print(difficultLvl); ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     // обновление сложности
@@ -124,7 +126,6 @@ public class BlockInstantiater : MonoBehaviour
         if(complexityFactor >= Random.Range(0, 101))
         {
             difficultLvl++;
-            if (difficultLvl > 9) difficultLvl = 9;
             UpdateComplexityFactor(-1);
         }
     }

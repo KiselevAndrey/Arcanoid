@@ -68,7 +68,7 @@ public class Ball : MonoBehaviour
 
     void GetRandomStartedForce()
     {
-        Vector2 force = new Vector2(Random.Range(-100, 101), Random.Range(20, 101)).normalized;
+        Vector2 force = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized;
         _rb.AddForce(force * startedSpeed);
         _isStarted = true;
     }
