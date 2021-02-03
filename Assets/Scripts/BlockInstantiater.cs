@@ -140,7 +140,7 @@ public class BlockInstantiater : MonoBehaviour
 
     void FillingBlock(ref Block block)
     {
-        block.lifes = difficultLvl;
+        block.lifes = Random.Range(1, difficultLvl + 1);
         block.score = Random.Range(difficultLvl - 1, difficultLvl + 2);
     }
 

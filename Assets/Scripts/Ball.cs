@@ -5,10 +5,11 @@ public class Ball : MonoBehaviour
     [SerializeField] PlayerMove playerPlatform;
     [SerializeField, Min(1)] float startedSpeed;
     [SerializeField] PlayerManager player;
-    public int damage = 1;
+    public int damage = 10;
     public string playerName;
 
     Rigidbody2D _rb;
+    TrailRenderer _trail;
     bool _isStarted;
     int _touchWallCount, _touchPlayerCount;
     float _minVelocity, _maxVelocity;
@@ -17,6 +18,7 @@ public class Ball : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _trail = GetComponentInChildren<TrailRenderer>();
         _minVelocity = 10;
         _maxVelocity = 15;
     }
@@ -25,6 +27,7 @@ public class Ball : MonoBehaviour
     {
         _rb.velocity *= 0f;
         _isStarted = false;
+        _trail.gameObject.SetActive(false);
         ZeroingTouches();
     }
 
@@ -64,7 +67,9 @@ public class Ball : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            print("btnClick");
             GetRandomStartedForce();
+            _trail.gameObject.SetActive(true);
         }
     }
 

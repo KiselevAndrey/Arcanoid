@@ -15,6 +15,7 @@ public class Block : MonoBehaviour
     private void Start()
     {
         _instantiater = GameObject.FindGameObjectWithTag(BDNames.BlockInstantiater).GetComponent<BlockInstantiater>();
+        coll2D = GetComponent<Collider2D>();
     }
     
     bool HitPunch(int damage, string playerName)
@@ -25,7 +26,7 @@ public class Block : MonoBehaviour
         if(currentLife > 0)
         {
             lifes = currentLife;
-            _instantiater.GiveScoreToPlayer(playerName, lifes - damage);
+            _instantiater.GiveScoreToPlayer(playerName, damage);
             return false;
         }
         // пробило
@@ -48,7 +49,7 @@ public class Block : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == BDNames.Ball)
         {

@@ -2056,6 +2056,8 @@ MonoBehaviour:
   playerPlatform: {fileID: 1998419876}
   startedSpeed: 500
   player: {fileID: 1998419877}
+  damage: 1
+  playerName: 
 --- !u!1 &1472186473
 GameObject:
   m_ObjectHideFlags: 0
