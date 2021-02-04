@@ -2,124 +2,32 @@
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] PlayerMove playerPlatform;
-    [SerializeField, Min(1)] float startedSpeed;
-    [SerializeField] PlayerManager player;
     public int damage = 10;
-    public string playerName;
 
-    Rigidbody2D _rb;
-    TrailRenderer _trail;
-    bool _isStarted;
-    int _touchWallCount, _touchPlayerCount;
-    float _minVelocity, _maxVelocity;
-    float _currentMinVelocity, _currentMaxVelocity;
+    BallMove _ballMove;
+    PlayerManager player;
+    public PlayerManager GetPlayer() => player;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _trail = GetComponentInChildren<TrailRenderer>();
-        _minVelocity = 10;
-        _maxVelocity = 15;
+        _ballMove = GetComponent<BallMove>();
+        player = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<PlayerManager>();
     }
 
-    public void Zeroing()
-    {
-        _rb.velocity *= 0f;
-        _isStarted = false;
-        _trail.gameObject.SetActive(false);
-        ZeroingTouches();
-    }
+    public void Zeroing() => _ballMove.Zeroing();
 
-    void ZeroingTouches()
-    {
-        _touchWallCount = 0;
-        _touchPlayerCount = 0;
-    }
-    
-    private void Update()
-    {
-        switch (_isStarted)
-        {
-            case true:
-
-                UpdateVelocity();
-
-                break;
-
-            case false:
-
-                PasteToPlayerPlatform();
-
-                break;
-        }
-    }
-
-    void UpdateVelocity()
-    {
-        if (_rb.velocity.magnitude < _currentMinVelocity) _rb.velocity *= 1.2f;
-        else if (_rb.velocity.magnitude > _currentMaxVelocity) _rb.velocity *= 0.8f;
-    }
-
-    void PasteToPlayerPlatform()
-    {
-        transform.position = new Vector2(playerPlatform.transform.position.x, playerPlatform.transform.position.y + playerPlatform.transform.localScale.y);
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            print("btnClick");
-            GetRandomStartedForce();
-            _trail.gameObject.SetActive(true);
-        }
-    }
-
-    void GetRandomStartedForce()
-    {
-        Vector2 force = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized;
-        _rb.AddForce(force * startedSpeed);
-        _isStarted = true;
-    }
+    public void ZeroingTouches() => _ballMove.ZeroingTouches();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == BDNames.Wall)
-        {
-            _touchWallCount++;
-            if (_touchWallCount > 5)
-            {
-                GetRandomStartedForce();
-                ZeroingTouches();
-            }
-        }
-
-        else if (collision.gameObject.tag == BDNames.Respawn)
+        if (collision.gameObject.tag == BDNames.Respawn)
         {
             player.Hit();
             Zeroing();
         }
-
-        else if(collision.gameObject.tag == BDNames.Player)
+        else if (collision.gameObject.tag == BDNames.Player)
         {
-            _touchPlayerCount++;
-            if(_touchPlayerCount > 3)
-            {
-                GetRandomStartedForce();
-                _touchPlayerCount = 0;
-            }
-            _touchWallCount = 0;
+            player = collision.gameObject.GetComponent<PlayerManager>();
         }
-        else
-        {
-            ZeroingTouches();
-        }
-    }
-
-    public void ChangeVelocity(int difficultLvl)
-    {
-        _currentMinVelocity = _minVelocity / 2 + difficultLvl - 1;
-        _currentMaxVelocity = _maxVelocity / 2 + difficultLvl - 1;
-
-        if (_currentMinVelocity > _minVelocity) _currentMinVelocity = _minVelocity;
-        if (_currentMaxVelocity > _maxVelocity) _currentMaxVelocity = _maxVelocity;
     }
 }

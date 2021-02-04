@@ -18,7 +18,7 @@ public class Block : MonoBehaviour
         coll2D = GetComponent<Collider2D>();
     }
     
-    bool HitPunch(int damage, string playerName)
+    bool HitPunch(int damage, PlayerManager player)
     {
         int currentLife = lifes - damage;
 
@@ -26,13 +26,13 @@ public class Block : MonoBehaviour
         if(currentLife > 0)
         {
             lifes = currentLife;
-            _instantiater.GiveScoreToPlayer(playerName, damage);
+            _instantiater.GiveScoreToPlayer(player, damage);
             return false;
         }
         // пробило
         else
         {
-            _instantiater.GiveScoreToPlayer(playerName, damage - currentLife + score);
+            _instantiater.GiveScoreToPlayer(player, damage - currentLife + score);
             _instantiater.BlockDied();
             Destroy(gameObject);
             return true;
@@ -44,7 +44,9 @@ public class Block : MonoBehaviour
         if (collision.gameObject.tag == BDNames.Ball)
         {
             Ball ball = collision.GetComponent<Ball>();
-            if(!HitPunch(ball.damage, ball.playerName))
+            ball.ZeroingTouches();
+
+            if(!HitPunch(ball.damage, ball.GetPlayer()))
                 coll2D.isTrigger = false;
         }
     }

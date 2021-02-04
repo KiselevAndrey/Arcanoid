@@ -116,7 +116,6 @@ public class BlockInstantiater : MonoBehaviour
             UpdateDifficult();
         }
 
-        _ball.ChangeVelocity(difficultLvl);
         print(difficultLvl); ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
@@ -134,8 +133,7 @@ public class BlockInstantiater : MonoBehaviour
     void UpdateComplexityFactor(int addedValue)
     {
         complexityFactor += addedValue;
-        if (complexityFactor < 0) complexityFactor = 0;
-        else if (complexityFactor > 100) complexityFactor = 100;
+        complexityFactor = Mathf.Clamp(complexityFactor, 0, 100);
     }
 
     void FillingBlock(ref Block block)
@@ -161,8 +159,8 @@ public class BlockInstantiater : MonoBehaviour
         }
     }
 
-    public void GiveScoreToPlayer(string playerName, int score)
+    public void GiveScoreToPlayer(PlayerManager player, int score)
     {
-
+        player.AddScore(score);
     }
 }
