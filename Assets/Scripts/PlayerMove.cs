@@ -5,13 +5,12 @@ enum MovingType { Keyboard, Mouse, Ball }
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] MovingType movingType;
-    [SerializeField, Min(1)] int moveSpeed;
+    [SerializeField, Range(1, 10)] float moveSpeed;
 
     public float leftBoard;
     public float rightBoard;
 
     GameObject _ball;
-    Rigidbody2D _rigidbody;
     float _startPosY;
 
     // Start is called before the first frame update
@@ -19,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     {
         _startPosY = transform.position.y;
 
-        _rigidbody = GetComponent<Rigidbody2D>();
         _ball = GameObject.FindGameObjectWithTag(BDNames.Ball);
     }
 
@@ -37,7 +35,7 @@ public class PlayerMove : MonoBehaviour
         {
             case MovingType.Keyboard:
                 Vector2 moveInput = new Vector2(Input.GetAxisRaw(BDNames.Horizontal), 0);
-                newPosition = _rigidbody.position + moveInput;
+                newPosition = new Vector2(transform.position.x, transform.position.y) + moveInput;
                 break;
 
             case MovingType.Mouse:
@@ -55,6 +53,7 @@ public class PlayerMove : MonoBehaviour
 
         newPosition.x = Mathf.Clamp(newPosition.x, leftBoard, rightBoard);
 
-        transform.position = Vector2.Lerp(transform.position, newPosition, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
+        
     }
 }

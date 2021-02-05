@@ -41,6 +41,8 @@ public class BlockInstantiater : MonoBehaviour
     
     void NewRound()
     {
+        _ball.Zeroing();
+
         CheckDifficult();
         CalculateLines();
         UpdateDifficult();
@@ -52,7 +54,8 @@ public class BlockInstantiater : MonoBehaviour
         {
             bool randomize = false;
             GameObject block = blocksType[0];
-            _x = (maxX + minX - _countBlocksInLines[i] / 2f) / 2;
+            
+            _x = (maxX + minX) / 2f - _countBlocksInLines[i] / 2f + 0.5f;
 
             if (randomInLine && (i % 2 == 1) && (lineCount % 2 == 1)) randomize = true;
             else block = blocksType.Ind(Random.Range(0, blockCount));
@@ -70,20 +73,21 @@ public class BlockInstantiater : MonoBehaviour
             }
             _y -= blockSizeInWorldMatrix;
         }
-
-        _ball.Zeroing();
     }
 
     // Высчитывает сколько блоков будет в строке
     void CalculateLines()
     {
         _countBlocksInLines = new List<int>();
-        int rest = blockCount;
+        int rest = blockCount;  // остаток блоков
+        int maxBlockInLine = (int)(maxX - minX) / (int)blockSizeInWorldMatrix;
 
         for (int i = 0; i < lineCount - 1; i++)
         {
             int res = blockCount / lineCount;
-            res = (int)Random.Range(res * 0.8f, res * 1.2f);
+            res = (int)Random.Range(res * 0.8f, res * 1.5f);
+
+            res = Mathf.Min(res, maxBlockInLine);
 
             if (res <= rest)
             {
@@ -97,7 +101,12 @@ public class BlockInstantiater : MonoBehaviour
             } 
         }
 
+        rest = Mathf.Min(rest, maxBlockInLine);
         _countBlocksInLines.Add(rest);
+
+        blockCount = 0;
+        for (int i = 0; i < _countBlocksInLines.Count; i++)
+            blockCount += _countBlocksInLines[i];
     }
 
     /// проверка что блоки не выходят за границу
@@ -138,7 +147,7 @@ public class BlockInstantiater : MonoBehaviour
 
     void FillingBlock(ref Block block)
     {
-        block.lifes = Random.Range(1, difficultLvl + 1);
+        block.SetLifes(Random.Range(1, difficultLvl + 1));
         block.score = Random.Range(difficultLvl - 1, difficultLvl + 2);
     }
 

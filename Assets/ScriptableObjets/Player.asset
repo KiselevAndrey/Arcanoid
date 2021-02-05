@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   startLifes: 3
-  score: 0
+  score: 42
   bestScore: 0
-  currentScore: 0
+  currentScore: 42

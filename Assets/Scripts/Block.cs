@@ -3,29 +3,50 @@
 public class Block : MonoBehaviour
 {
     [Header("Характеристики блока")]
-    [SerializeField, Min(1)] public int lifes;
     [SerializeField] public int score;
+    [SerializeField] bool isInvisible;
+    [SerializeField] bool isImmortal;
 
-    [SerializeField] Collider2D coll2D;
+    [Header("Доп связи")]
+    [SerializeField] Number health;
 
    // PlayerManager _player;
     BlockInstantiater _instantiater;
-    string playerName;
+    SpriteRenderer _spriteRenderer;
+    Collider2D _coll2D;
+    int _lifes = 0;
 
     private void Start()
     {
         _instantiater = GameObject.FindGameObjectWithTag(BDNames.BlockInstantiater).GetComponent<BlockInstantiater>();
-        coll2D = GetComponent<Collider2D>();
+        _coll2D = GetComponent<Collider2D>();
+
+        if(isInvisible)
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer.enabled = false;
+            health.gameObject.SetActive(false);
+        }
     }
-    
+
     bool HitPunch(int damage, PlayerManager player)
     {
-        int currentLife = lifes - damage;
+        if (isInvisible)
+        {
+            _spriteRenderer.enabled = true;
+            health.gameObject.SetActive(true);
+            isInvisible = false;
+            return false;
+        }
+
+        if (isImmortal) return false;
+
+        int currentLife = _lifes - damage;
 
         // пробития нет
-        if(currentLife > 0)
+        if (currentLife > 0)
         {
-            lifes = currentLife;
+            SetLifes(currentLife);
             _instantiater.GiveScoreToPlayer(player, damage);
             return false;
         }
@@ -36,7 +57,16 @@ public class Block : MonoBehaviour
             _instantiater.BlockDied();
             Destroy(gameObject);
             return true;
-        }
+        }        
+    }
+
+    void UpdateHealth() => health.SetNumber(_lifes);
+
+    public void SetLifes(int value)
+    {
+        print(value);
+        _lifes = value;
+        UpdateHealth();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,7 +77,7 @@ public class Block : MonoBehaviour
             ball.ZeroingTouches();
 
             if(!HitPunch(ball.damage, ball.GetPlayer()))
-                coll2D.isTrigger = false;
+                _coll2D.isTrigger = false;
         }
     }
 
@@ -55,7 +85,7 @@ public class Block : MonoBehaviour
     {
         if (collision.gameObject.tag == BDNames.Ball)
         {
-            coll2D.isTrigger = true;
+            _coll2D.isTrigger = true;
         }
     }
 }

@@ -6,11 +6,11 @@ public static class BDNames
     #endregion
 
     #region Tags
-    public static string Ball = "Ball";
-    public static string Wall = "Wall";
-    public static string Player = "Player";
-    public static string Respawn = "Respawn";
-    public static string BlockInstantiater = "Block Instantiater";
-    public static string Savior = "Savior";
+    public const string Ball = "Ball";
+    public const string Wall = "Wall";
+    public const string Player = "Player";
+    public const string Respawn = "Respawn";
+    public const string BlockInstantiater = "Block Instantiater";
+    public const string Savior = "Savior";
     #endregion
 }
