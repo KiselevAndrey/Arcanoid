@@ -18,9 +18,10 @@ public class Number : MonoBehaviour
     {
         SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         for (int i = 0; i < spriteRenderers.Length; i++)
-        {
             _spriteRenderers.Add(spriteRenderers[i]);
-        }
+
+        if (_isOverrun) UpdateColor(overrunColor);
+        else UpdateColor(normalColor);
     }
 
     public void SetNumber(int value)

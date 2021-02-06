@@ -54,7 +54,7 @@ public class Block : MonoBehaviour
         else
         {
             _instantiater.GiveScoreToPlayer(player, damage - currentLife + score);
-            _instantiater.BlockDied();
+            _instantiater.BlockDied(transform.position);
             Destroy(gameObject);
             return true;
         }        
@@ -64,7 +64,6 @@ public class Block : MonoBehaviour
 
     public void SetLifes(int value)
     {
-        print(value);
         _lifes = value;
         UpdateHealth();
     }

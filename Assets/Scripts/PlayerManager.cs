@@ -3,13 +3,25 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
+    [Header("Данные игрока")]
     [SerializeField] PlayerSO player;
-    [SerializeField] Text lifeText;
+    [Header("Картинки цифр")]
+    [SerializeField] Number life;
+    [SerializeField] Number damage;
+
     [SerializeField] Text scoreText;
     [SerializeField] Text bestScoreText;
     [SerializeField] Text currentScoreText;
-
+    
     int _life;
+    int _damage;
+
+    public int GetDamage() => _damage;
+    public void AddDamage()
+    {
+        _damage++;
+        UpdateDamage();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +29,10 @@ public class PlayerManager : MonoBehaviour
         player.Zeroing();
 
         _life = player.startLifes;
+        _damage = player.startDamage;
+
         UpdateLife();
+        UpdateDamage();
     }
     
     public void Hit()
@@ -37,8 +52,10 @@ public class PlayerManager : MonoBehaviour
 
     void UpdateLife()
     {
-        lifeText.text = _life.ToString();
+        life.SetNumber(_life);
     }
+
+    void UpdateDamage() => damage.SetNumber(_damage);
 
     public void UpdateScore()
     {

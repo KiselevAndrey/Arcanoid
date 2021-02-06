@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     {
         _ballMove = GetComponent<BallMove>();
         player = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<PlayerManager>();
+        damage = player.GetDamage();
     }
 
     public void Zeroing() => _ballMove.Zeroing();
@@ -28,6 +29,7 @@ public class Ball : MonoBehaviour
         else if (collision.gameObject.tag == BDNames.Player)
         {
             player = collision.gameObject.GetComponent<PlayerManager>();
+            damage = player.GetDamage();
         }
     }
 }

@@ -4,6 +4,7 @@
 public class PlayerSO : ScriptableObject
 {
     [Min(1)] public int startLifes;
+    [Min(1)] public int startDamage;
 
     [Header("Счет")]
     public int score;

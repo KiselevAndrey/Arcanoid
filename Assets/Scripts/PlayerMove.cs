@@ -54,6 +54,5 @@ public class PlayerMove : MonoBehaviour
         newPosition.x = Mathf.Clamp(newPosition.x, leftBoard, rightBoard);
 
         transform.position = Vector2.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
-        
     }
 }

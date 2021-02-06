@@ -115,13 +115,13 @@ public class BlockInstantiater : MonoBehaviour
         if (lineCount > _maxRows)
         {
             lineCount = _maxRows;
-            UpdateComplexityFactor(1);
+            UpdateComplexityFactor(5);
             UpdateDifficult();
         }
         if (blockCount > _maxRows * _maxColumns)
         {
             blockCount = _maxRows * _maxColumns;
-            UpdateComplexityFactor(1);
+            UpdateComplexityFactor(5);
             UpdateDifficult();
         }
 
@@ -151,7 +151,7 @@ public class BlockInstantiater : MonoBehaviour
         block.score = Random.Range(difficultLvl - 1, difficultLvl + 2);
     }
 
-    public void BlockDied()
+    public void BlockDied(Vector2 position)
     {
         _deathCount++;
         CheckKillAll();

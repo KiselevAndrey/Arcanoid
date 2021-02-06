@@ -14,3 +14,11 @@ public static class BDNames
     public const string Savior = "Savior";
     #endregion
 }
+
+public static class BonusNames
+{
+    public const string Life = "Life";
+    public const string Speed = "Speed";
+    public const string Damage = "Damage";
+}
+
