@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4993916}
   - component: {fileID: 4993917}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left Up Angle
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8543666}
   - component: {fileID: 8543667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block_cornerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 328781525}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: General Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,6 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402991836}
   - component: {fileID: 402991835}
+  - component: {fileID: 402991837}
   m_Layer: 0
   m_Name: Block Instantiater
   m_TagString: Block Instantiater
@@ -381,13 +382,14 @@ MonoBehaviour:
   blockCount: 15
   lineCount: 2
   difficultLvl: 1
-  complexityFactor: 35
+  complexityFactor: 50
   randomInLine: 1
   blocksType:
   - {fileID: 6988277596948918130, guid: 0b224ab86de0f8d44bf8255cb86c76f4, type: 3}
   - {fileID: 5603675470494223156, guid: d38d1f1e85b197244b4610a26f1518ba, type: 3}
   - {fileID: 448457803349305349, guid: 69520fa44635d984094d6179bc2a4ca8, type: 3}
   blockSizeInWorldMatrix: 1
+  bonusChance: 13
 --- !u!224 &402991836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -407,6 +409,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &402991837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402991834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bd3d26e4fff994db587046613ef643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonuses:
+  - {fileID: 11400000, guid: e56b2be9a0e0cf641ac4f65ffa0d9e04, type: 2}
+  - {fileID: 11400000, guid: 9932b567559b2b5498d08334acb48a08, type: 2}
+  - {fileID: 11400000, guid: 95e7b5ed2ea36ff44800a128d4297688, type: 2}
+  - {fileID: 11400000, guid: 52495f56a8253754d9767a91982f7f1b, type: 2}
+  bonusPrefab: {fileID: 6439112867364957646, guid: 21d7d39aaf69f1741988a0860386934e,
+    type: 3}
 --- !u!1 &447858851
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +439,7 @@ GameObject:
   - component: {fileID: 447858852}
   - component: {fileID: 447858854}
   - component: {fileID: 447858853}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +517,7 @@ GameObject:
   - component: {fileID: 477870328}
   - component: {fileID: 477870330}
   - component: {fileID: 477870329}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Current Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +595,7 @@ GameObject:
   - component: {fileID: 487542110}
   - component: {fileID: 487542112}
   - component: {fileID: 487542111}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Best Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +673,7 @@ GameObject:
   - component: {fileID: 524139669}
   - component: {fileID: 524139671}
   - component: {fileID: 524139670}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544825907}
   - component: {fileID: 544825908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block_cornerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,11 +896,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682185278}
-  - component: {fileID: 682185277}
   - component: {fileID: 682185276}
   - component: {fileID: 682185279}
   - component: {fileID: 682185275}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Savior
   m_TagString: Savior
   m_Icon: {fileID: 0}
@@ -933,24 +953,6 @@ MonoBehaviour:
   moveSpeed: 9
   leftBoard: -5
   rightBoard: 5
---- !u!114 &682185277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682185274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29f90bf9d03f5bf42824b721e7954215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 2a14417566e6e544ca19ff10fe4d307f, type: 2}
-  life: {fileID: 0}
-  damage: {fileID: 0}
-  scoreText: {fileID: 1558707358}
-  bestScoreText: {fileID: 487542111}
-  currentScoreText: {fileID: 477870329}
 --- !u!4 &682185278
 Transform:
   m_ObjectHideFlags: 0
@@ -993,7 +995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727606689}
   - component: {fileID: 727606690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1132,7 +1134,7 @@ GameObject:
   - component: {fileID: 756484324}
   - component: {fileID: 756484323}
   - component: {fileID: 756484322}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,7 +1300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026082666}
   - component: {fileID: 1026082667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block_cornerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076961547}
   - component: {fileID: 1076961548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block_square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1472,7 +1474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208842962}
   - component: {fileID: 1208842963}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right Up Angle
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1528,7 +1530,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1220562908}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267201231}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Current Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1600,7 +1602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278477022}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Best Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1639,7 +1641,7 @@ GameObject:
   - component: {fileID: 1283401611}
   - component: {fileID: 1283401610}
   m_Layer: 0
-  m_Name: block_locked_narrow
+  m_Name: Dont Destroy Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1720,7 +1722,7 @@ GameObject:
   - component: {fileID: 1325738085}
   - component: {fileID: 1325738087}
   - component: {fileID: 1325738086}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,7 +1799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1345216017}
   - component: {fileID: 1345216018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block_square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1879,7 +1881,7 @@ GameObject:
   - component: {fileID: 1352641752}
   - component: {fileID: 1352641754}
   - component: {fileID: 1352641753}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1927,7 +1929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fa5ef75924574d6468349d058af62118, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fa473539465de245b14ed4bff3c02bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1959,7 +1961,7 @@ GameObject:
   - component: {fileID: 1406053766}
   - component: {fileID: 1406053768}
   - component: {fileID: 1406053769}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -2043,14 +2045,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 1.17
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: cc13001ff80fbd34c974e083644c5811, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &1406053767
 CircleCollider2D:
@@ -2107,6 +2109,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: af5a846d96e0ac641a93ce796695af55,
         type: 3}
+    - target: {fileID: 3817970979109697184, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3817970980469753312, guid: a06230b81c16fb24fbbce86e20f22353,
         type: 3}
       propertyPath: normalColor.r
@@ -2257,6 +2264,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Number Life
       objectReference: {fileID: 0}
+    - target: {fileID: 3817970980469753314, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06230b81c16fb24fbbce86e20f22353, type: 3}
 --- !u!224 &1466249270 stripped
@@ -2275,7 +2287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1472186474}
   - component: {fileID: 1472186475}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block_cornerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2356,7 +2368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1524276297}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: UpWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2389,7 +2401,7 @@ GameObject:
   - component: {fileID: 1558707357}
   - component: {fileID: 1558707359}
   - component: {fileID: 1558707358}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2465,7 +2477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607921321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2500,7 +2512,7 @@ GameObject:
   - component: {fileID: 1639184175}
   - component: {fileID: 1639184177}
   - component: {fileID: 1639184176}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: button_blue
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2608,7 +2620,7 @@ GameObject:
   - component: {fileID: 1746698030}
   - component: {fileID: 1746698032}
   - component: {fileID: 1746698031}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: button_blue
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2712,6 +2724,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8543666}
     m_Modifications:
+    - target: {fileID: 3817970979109697184, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3817970980469753312, guid: a06230b81c16fb24fbbce86e20f22353,
         type: 3}
       propertyPath: normalColor.r
@@ -2852,6 +2869,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Number Damage
       objectReference: {fileID: 0}
+    - target: {fileID: 3817970980469753314, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06230b81c16fb24fbbce86e20f22353, type: 3}
 --- !u!224 &1756550410 stripped
@@ -2869,7 +2891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1810921255}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2900,7 +2922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1814457385}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3017,7 +3039,7 @@ GameObject:
   - component: {fileID: 1998419877}
   - component: {fileID: 1998419876}
   - component: {fileID: 1998419878}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3117,7 +3139,7 @@ GameObject:
   - component: {fileID: 2118317546}
   - component: {fileID: 2118317548}
   - component: {fileID: 2118317547}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: button_blue
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3221,6 +3243,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682185278}
     m_Modifications:
+    - target: {fileID: 3817970979109697184, guid: 3bc3199a438c21b43b414a8f99b61c4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3817970980469753313, guid: 3bc3199a438c21b43b414a8f99b61c4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3234,7 +3261,7 @@ PrefabInstance:
     - target: {fileID: 3817970980469753313, guid: 3bc3199a438c21b43b414a8f99b61c4b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3817970980469753313, guid: 3bc3199a438c21b43b414a8f99b61c4b,
         type: 3}
@@ -3330,6 +3357,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Number
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817970980469753314, guid: 3bc3199a438c21b43b414a8f99b61c4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817970980952629265, guid: 3bc3199a438c21b43b414a8f99b61c4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bc3199a438c21b43b414a8f99b61c4b, type: 3}

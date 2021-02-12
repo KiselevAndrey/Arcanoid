@@ -19,6 +19,7 @@ public class BlockInstantiater : MonoBehaviour
     [Header("Данные по блокам")]
     [SerializeField] List<GameObject> blocksType;
     [SerializeField, Min(0)] float blockSizeInWorldMatrix;
+    [SerializeField, Range(0, 100)] int bonusChance;
 
     List<int> _countBlocksInLines;
     int _iRow;
@@ -27,6 +28,7 @@ public class BlockInstantiater : MonoBehaviour
     int _maxRows, _maxColumns;
 
     Ball _ball;
+    BonusInstantiater _bonusInstantiater;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class BlockInstantiater : MonoBehaviour
         _maxRows = (int)((maxY - minY) / blockSizeInWorldMatrix);
 
         _ball = GameObject.FindGameObjectWithTag(BDNames.Ball).GetComponent<Ball>();
+        _bonusInstantiater = GetComponent<BonusInstantiater>();
 
         NewRound();
     }
@@ -124,8 +127,6 @@ public class BlockInstantiater : MonoBehaviour
             UpdateComplexityFactor(5);
             UpdateDifficult();
         }
-
-        print(difficultLvl); ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     // обновление сложности
@@ -155,6 +156,9 @@ public class BlockInstantiater : MonoBehaviour
     {
         _deathCount++;
         CheckKillAll();
+
+        if (Random.Range(0, 101) <= bonusChance)
+            _bonusInstantiater.CreateBonus(position, bonusChance, difficultLvl);
     }
 
     void CheckKillAll()

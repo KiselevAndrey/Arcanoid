@@ -5,6 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     [Header("Данные игрока")]
     [SerializeField] PlayerSO player;
+
     [Header("Картинки цифр")]
     [SerializeField] Number life;
     [SerializeField] Number damage;
@@ -17,14 +18,15 @@ public class PlayerManager : MonoBehaviour
     int _damage;
 
     public int GetDamage() => _damage;
-    public void AddDamage()
+    public void AddDamage(int value)
     {
-        _damage++;
+        _damage += value;
+        if (_damage < 1) _damage = 1;
         UpdateDamage();
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player.Zeroing();
 
@@ -47,6 +49,7 @@ public class PlayerManager : MonoBehaviour
         if (_life <= 0)
         {
             print("Game Over");
+            Destroy(gameObject);
         }
     }
 

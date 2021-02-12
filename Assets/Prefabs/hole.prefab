@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5603675470494223155}
   - component: {fileID: 5603675470494223154}
   - component: {fileID: -6731417808744390088}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: e8551b3e5b2ce6745934d60d462c2e6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  isInvisible: 0
+  isInvisible: 1
   isImmortal: 0
   health: {fileID: 7440351378993152586}
 --- !u!1001 &6034076143104018346
@@ -123,6 +123,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5603675470494223157}
     m_Modifications:
+    - target: {fileID: 3817970979109697184, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3817970980469753313, guid: a06230b81c16fb24fbbce86e20f22353,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,6 +247,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Number 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817970980469753314, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06230b81c16fb24fbbce86e20f22353, type: 3}

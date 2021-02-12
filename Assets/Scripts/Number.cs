@@ -26,6 +26,7 @@ public class Number : MonoBehaviour
 
     public void SetNumber(int value)
     {
+        // если цифр в числе больше, чем цифр в
         if (value >= Mathf.Pow(10, _spriteRenderers.Count))
         {
             for (int i = 0; i < _spriteRenderers.Count; i++)

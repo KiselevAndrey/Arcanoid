@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 448457803349305344}
   - component: {fileID: 448457803349305347}
   - component: {fileID: -1264915679742978233}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 5e111847fed2198458b4444fd440fec2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,6 +151,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 448457803349305346}
     m_Modifications:
+    - target: {fileID: 3817970979109697184, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3817970980469753313, guid: a06230b81c16fb24fbbce86e20f22353,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Number 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817970980469753314, guid: a06230b81c16fb24fbbce86e20f22353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06230b81c16fb24fbbce86e20f22353, type: 3}

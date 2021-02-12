@@ -30,4 +30,9 @@ public static class Helper
         index = Math.Abs(index);
         return list[index % list.Count];
     }
+
+    public static bool RandomBool()
+    {
+        return rng.Next(2) != 0;
+    }
 }

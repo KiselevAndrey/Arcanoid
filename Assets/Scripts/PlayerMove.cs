@@ -55,4 +55,10 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
     }
+
+    public void AddSpeed(float value)
+    {
+        moveSpeed += value;
+        if (moveSpeed < 1) moveSpeed = 1;
+    }
 }
