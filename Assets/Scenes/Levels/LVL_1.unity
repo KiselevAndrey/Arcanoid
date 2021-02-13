@@ -164,9 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1680597c8481045b119a240351893f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players:
-  - {fileID: 0}
-  balls: []
+  players: []
+  balls:
+  - {fileID: 1406053768}
 --- !u!1 &561705642
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +353,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2656979274511960889, guid: b49c39c3b7b251a4d85c0a9102833803,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656979274511960889, guid: b49c39c3b7b251a4d85c0a9102833803,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656979274511960889, guid: b49c39c3b7b251a4d85c0a9102833803,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.39607847
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656979274511960889, guid: b49c39c3b7b251a4d85c0a9102833803,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.48235297
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656979274511960889, guid: b49c39c3b7b251a4d85c0a9102833803,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2656979275173626642, guid: b49c39c3b7b251a4d85c0a9102833803,
         type: 3}
       propertyPath: ball

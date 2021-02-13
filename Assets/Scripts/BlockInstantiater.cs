@@ -44,7 +44,7 @@ public class BlockInstantiater : MonoBehaviour
     
     void NewRound()
     {
-        _ball.Zeroing();
+        _ball.move.Zeroing();
 
         CheckDifficult();
         CalculateLines();

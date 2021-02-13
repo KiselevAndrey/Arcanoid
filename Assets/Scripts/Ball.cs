@@ -8,38 +8,49 @@ public class Ball : MonoBehaviour
 
     [Header("Скрипты связанные с мячом")]
     public BallMove move;
+    public BallStats stats;
+    public BallStartDirection startDirection;
 
-    public int damage = 10;
-
-    BallMove _ballMove;
-    Player player;
-    public Player GetPlayer() => player;
+    public Player player;
 
     private void Start()
     {
-        _ballMove = GetComponent<BallMove>();
-        _ballMove.Zeroing();
-        //player = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<Player>();
-        //damage = player.stats.GetDamage();
+        player = gameManager.players[indexInGame];
+        stats.Damage = player.stats.GetDamage();
     }
 
-    public void Zeroing() => _ballMove.Zeroing();
-
-    public void ZeroingTouches() => _ballMove.ZeroingTouches();
-
+    #region OnEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
         {
+            case TagsNames.Wall:
+                move.HitWall();
+                return;
+
             case TagsNames.Respawn:
-                //player.Hit();
-                Zeroing();
+                player.Hit();
+                move.Zeroing();
                 break;
 
             case TagsNames.Player:
-                //player = collision.gameObject.GetComponent<Player>();
-                //damage = player.stats.GetDamage();
+                player = collision.gameObject.GetComponentInParent<Player>();
+                stats.Damage = player.stats.GetDamage();
+                break;
+        }
+
+        move.ZeroingTouches();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case TagsNames.Player:
+                player = collision.gameObject.GetComponent<Player>();
+                stats.Damage = player.stats.GetDamage();
                 break;
         }
     }
+    #endregion
 }

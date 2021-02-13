@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 2656979275173626653}
   - component: {fileID: 2656979275173626643}
   - component: {fileID: 2656979275173626642}
+  - component: {fileID: 2621786386057240417}
   m_Layer: 9
   m_Name: ball
   m_TagString: Ball
@@ -274,7 +275,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   indexInGame: 0
-  damage: 1
+  move: {fileID: 2656979275173626642}
+  stats: {fileID: 2621786386057240417}
+  player: {fileID: 0}
 --- !u!114 &2656979275173626642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,4 +290,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf999adfb3350443be391f16fda1765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 2656979275173626643}
   speed: 5
+--- !u!114 &2621786386057240417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2656979275173626648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdc759a17a0c674c9b3fbc9ca5a187a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

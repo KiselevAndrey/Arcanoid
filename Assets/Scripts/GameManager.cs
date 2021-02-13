@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
     public Player[] players;
     public Ball[] balls;
 
-    private void Start()
+    private void Awake()
     {
         players = FindObjectsOfType<Player>();
         balls = FindObjectsOfType<Ball>();

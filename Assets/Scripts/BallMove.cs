@@ -7,7 +7,6 @@ public class BallMove : MonoBehaviour
 
     [SerializeField, Range(1, 10)] float speed;
 
-    PlayerMove _playerPlatform;
     Rigidbody2D _rb;
     Collider2D _collider;
     TrailRenderer _trail;
@@ -15,60 +14,62 @@ public class BallMove : MonoBehaviour
     bool _isStarted;
     int _touchWallCount;
 
+    #region Awake Update
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _trail = GetComponentInChildren<TrailRenderer>();
+        //_trail.colorGradient.colorKeys[0].color
     }
-
-    private void Start()
-    {
-        _playerPlatform = ball.gameManager.players[ball.indexInGame].move;
-    }
-
+    
     private void FixedUpdate()
     {
         switch (_isStarted)
         {
             case true:
-
                 UpdateVelocity(speed);
-
                 break;
 
             case false:
-
                 PasteToPlayerPlatform();
-
                 break;
         }
     }
-
-    void UpdateVelocity(float speedMultiply)
-    {
-        _rb.velocity = _rb.velocity.normalized * speedMultiply;
-    }
-
+    #endregion
+    
+    #region Zeroing
     public void Zeroing()
     {
         UpdateVelocity(0);
         ZeroingTouches();
-        _trail.gameObject.SetActive(false);
+        StartBall(false);
+
         _isStarted = false;
-        _collider.isTrigger = true;
     }
+
+    public void ZeroingTouches() => _touchWallCount = 0;
+    #endregion
+
+    #region Move
+    void UpdateVelocity(float speedMultiply) => _rb.velocity = _rb.velocity.normalized * speedMultiply;
 
     void PasteToPlayerPlatform()
     {
-        transform.position = new Vector2(_playerPlatform.transform.position.x, _playerPlatform.transform.position.y + _playerPlatform.transform.localScale.y);
+        transform.position = new Vector2(ball.player.move.transform.position.x, ball.player.move.transform.position.y + ball.player.move.transform.localScale.y);
 
         if (Input.GetMouseButtonUp(0))
         {
             GetRandomStartedForce();
-            _trail.gameObject.SetActive(true);
-            _collider.isTrigger = false;
+            StartBall(true);
         }
+    }
+    #endregion
+
+    void StartBall(bool value)
+    {
+        _trail.gameObject.SetActive(value);
+        _collider.isTrigger = !value;
     }
 
     void GetRandomStartedForce()
@@ -79,25 +80,15 @@ public class BallMove : MonoBehaviour
         _isStarted = true;
     }
 
-    public void ZeroingTouches()
+    /// <summary>
+    /// Удар об стену
+    /// </summary>
+    public void HitWall()
     {
-        _touchWallCount = 0;
-    }
-    
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == TagsNames.Wall)
+        _touchWallCount++;
+        if (_touchWallCount > 5)
         {
-            _touchWallCount++;
-            if (_touchWallCount > 5)
-            {
-                GetRandomStartedForce();
-                ZeroingTouches();
-            }
-        }
-
-        else
-        {
+            GetRandomStartedForce();
             ZeroingTouches();
         }
     }

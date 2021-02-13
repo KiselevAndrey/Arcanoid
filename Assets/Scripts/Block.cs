@@ -73,9 +73,9 @@ public class Block : MonoBehaviour
         if (collision.gameObject.tag == TagsNames.Ball)
         {
             Ball ball = collision.GetComponent<Ball>();
-            ball.ZeroingTouches();
+            ball.move.ZeroingTouches();
 
-            if(!HitPunch(ball.damage, ball.GetPlayer()))
+            if(!HitPunch(ball.stats.Damage, ball.player))
                 _coll2D.isTrigger = false;
         }
     }
