@@ -16,7 +16,7 @@ public class Savior : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case BDNames.Ball:
+            case TagsNames.Ball:
                 life--;
                 UpdateLife();
                 break;
@@ -35,9 +35,9 @@ public class Savior : MonoBehaviour
         number.SetNumber(life);
     }
 
-    public void AddLife()
+    public void AddLife(int value)
     {
-        life++;
+        life += value;
         UpdateLife();
     }
 }

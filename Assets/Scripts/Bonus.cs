@@ -59,11 +59,11 @@ public class Bonus : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case BDNames.Respawn:
+            case TagsNames.Respawn:
                 Destroy(gameObject);
                 break;
 
-            case BDNames.Player:
+            case TagsNames.Player:
                 BonusForPlayer(collision);
                 Destroy(gameObject);
                 break;
@@ -75,7 +75,7 @@ public class Bonus : MonoBehaviour
         switch (bonusSO.bonusName)
         {
             case BonusName.Damage:
-                collision.gameObject.GetComponent<PlayerManager>().AddDamage((int)bonusSO.Force);
+                collision.gameObject.GetComponent<Player>().stats.AddDamage((int)bonusSO.Force);
                 break;
 
             case BonusName.SpeedPlatform:
@@ -83,7 +83,7 @@ public class Bonus : MonoBehaviour
                 break;
 
             case BonusName.Score:
-                collision.gameObject.GetComponent<PlayerManager>().AddScore((int)bonusSO.Force);
+                collision.gameObject.GetComponent<Player>().score.AddScore((int)bonusSO.Force);
                 break;
         }
     }

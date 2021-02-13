@@ -36,7 +36,7 @@ public class BlockInstantiater : MonoBehaviour
         _maxColumns = (int)((maxX - minX) / blockSizeInWorldMatrix);
         _maxRows = (int)((maxY - minY) / blockSizeInWorldMatrix);
 
-        _ball = GameObject.FindGameObjectWithTag(BDNames.Ball).GetComponent<Ball>();
+        _ball = GameObject.FindGameObjectWithTag(TagsNames.Ball).GetComponent<Ball>();
         _bonusInstantiater = GetComponent<BonusInstantiater>();
 
         NewRound();
@@ -172,8 +172,8 @@ public class BlockInstantiater : MonoBehaviour
         }
     }
 
-    public void GiveScoreToPlayer(PlayerManager player, int score)
+    public void GiveScoreToPlayer(Player player, int score)
     {
-        player.AddScore(score);
+        player.score.AddScore(score);
     }
 }

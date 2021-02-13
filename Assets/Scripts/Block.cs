@@ -18,7 +18,7 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
-        _instantiater = GameObject.FindGameObjectWithTag(BDNames.BlockInstantiater).GetComponent<BlockInstantiater>();
+        _instantiater = GameObject.FindGameObjectWithTag(TagsNames.BlockInstantiater).GetComponent<BlockInstantiater>();
         _coll2D = GetComponent<Collider2D>();
 
         if(isInvisible)
@@ -29,7 +29,7 @@ public class Block : MonoBehaviour
         }
     }
 
-    bool HitPunch(int damage, PlayerManager player)
+    bool HitPunch(int damage, Player player)
     {
         if (isInvisible)
         {
@@ -70,7 +70,7 @@ public class Block : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == BDNames.Ball)
+        if (collision.gameObject.tag == TagsNames.Ball)
         {
             Ball ball = collision.GetComponent<Ball>();
             ball.ZeroingTouches();
@@ -82,7 +82,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == BDNames.Ball)
+        if (collision.gameObject.tag == TagsNames.Ball)
         {
             _coll2D.isTrigger = true;
         }

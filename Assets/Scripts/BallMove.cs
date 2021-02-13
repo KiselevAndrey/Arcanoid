@@ -2,24 +2,32 @@
 
 public class BallMove : MonoBehaviour
 {
+    [Header("Связывающие данные")]
+    [SerializeField] Ball ball;
+
     [SerializeField, Range(1, 10)] float speed;
 
-    Rigidbody2D _rb;
     PlayerMove _playerPlatform;
-    TrailRenderer _trail;
+    Rigidbody2D _rb;
     Collider2D _collider;
+    TrailRenderer _trail;
+
     bool _isStarted;
     int _touchWallCount;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _playerPlatform = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<PlayerMove>();
-        _trail = GetComponentInChildren<TrailRenderer>();
         _collider = GetComponent<Collider2D>();
+        _trail = GetComponentInChildren<TrailRenderer>();
     }
 
-    private void Update()
+    private void Start()
+    {
+        _playerPlatform = ball.gameManager.players[ball.indexInGame].move;
+    }
+
+    private void FixedUpdate()
     {
         switch (_isStarted)
         {
@@ -65,7 +73,7 @@ public class BallMove : MonoBehaviour
 
     void GetRandomStartedForce()
     {
-        _rb.velocity = new Vector2(Random.Range(-100, 101), Random.Range(100, 101)).normalized;
+        _rb.velocity = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized;
         UpdateVelocity(speed);
 
         _isStarted = true;
@@ -78,7 +86,7 @@ public class BallMove : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == BDNames.Wall)
+        if (collision.gameObject.tag == TagsNames.Wall)
         {
             _touchWallCount++;
             if (_touchWallCount > 5)

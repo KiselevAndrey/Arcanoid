@@ -2,17 +2,26 @@
 
 public class GameManager : MonoBehaviour
 {
+    public Player[] players;
+    public Ball[] balls;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        players = FindObjectsOfType<Player>();
+        balls = FindObjectsOfType<Ball>();
+
+        SetIndex();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Установка индексов у объектов
+    /// </summary>
+    void SetIndex()
     {
-        
+        for (int i = 0; i < players.Length; i++)
+            players[i].indexInGame = i;
+
+        for (int i = 0; i < balls.Length; i++)
+            balls[i].indexInGame = i;
     }
 }

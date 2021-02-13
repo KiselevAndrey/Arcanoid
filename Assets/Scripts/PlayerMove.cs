@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 
-enum MovingType { Keyboard, Mouse, Ball }
+public enum MovingType { Keyboard, Mouse, Ball }
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] MovingType movingType;
+    [Header("Связывающие данные")]
+    [SerializeField] Player player;
+
+    [Header("Данные по скрипту")]
+    [SerializeField] public MovingType movingType;
     [SerializeField, Range(1, 10)] float moveSpeed;
 
     public float leftBoard;
     public float rightBoard;
 
-    GameObject _ball;
+    Ball _ball;
     float _startPosY;
 
-    // Start is called before the first frame update
     void Start()
     {
         _startPosY = transform.position.y;
 
-        _ball = GameObject.FindGameObjectWithTag(BDNames.Ball);
+        if (movingType == MovingType.Ball)
+            _ball = player.gameManager.balls[player.indexInGame];
     }
 
-    // Update is called once per frame
     void Update()
     {
         MoveHorizontal();
@@ -34,7 +37,7 @@ public class PlayerMove : MonoBehaviour
         switch (movingType)
         {
             case MovingType.Keyboard:
-                Vector2 moveInput = new Vector2(Input.GetAxisRaw(BDNames.Horizontal), 0);
+                Vector2 moveInput = new Vector2(Input.GetAxisRaw(AxesNames.Horizontal), 0);
                 newPosition = new Vector2(transform.position.x, transform.position.y) + moveInput;
                 break;
 
@@ -56,9 +59,15 @@ public class PlayerMove : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Изменение скорости для бонуса
+    /// </summary>
+    /// <param name="value">На сколько изменится скорость</param>
     public void AddSpeed(float value)
     {
+        print(moveSpeed + " " + value); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         moveSpeed += value;
+        print(moveSpeed); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (moveSpeed < 1) moveSpeed = 1;
     }
 }

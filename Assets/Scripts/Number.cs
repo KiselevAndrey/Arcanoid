@@ -24,9 +24,12 @@ public class Number : MonoBehaviour
         else UpdateColor(normalColor);
     }
 
+    /// <summary>
+    /// Правильное отображение числа для соответствующего кол-ва цифр
+    /// </summary>
     public void SetNumber(int value)
     {
-        // если цифр в числе больше, чем цифр в
+        // если цифр в числе больше, чем цифр в отображении
         if (value >= Mathf.Pow(10, _spriteRenderers.Count))
         {
             for (int i = 0; i < _spriteRenderers.Count; i++)

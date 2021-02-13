@@ -2,17 +2,25 @@
 
 public class Ball : MonoBehaviour
 {
+    [Header("Связывающие данные")]
+    public GameManager gameManager;
+    [HideInInspector] public int indexInGame;
+
+    [Header("Скрипты связанные с мячом")]
+    public BallMove move;
+
     public int damage = 10;
 
     BallMove _ballMove;
-    PlayerManager player;
-    public PlayerManager GetPlayer() => player;
+    Player player;
+    public Player GetPlayer() => player;
 
-    private void Awake()
+    private void Start()
     {
         _ballMove = GetComponent<BallMove>();
-        player = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<PlayerManager>();
-        damage = player.GetDamage();
+        _ballMove.Zeroing();
+        //player = GameObject.FindGameObjectWithTag(BDNames.Player).GetComponent<Player>();
+        //damage = player.stats.GetDamage();
     }
 
     public void Zeroing() => _ballMove.Zeroing();
@@ -21,15 +29,17 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == BDNames.Respawn)
+        switch (collision.gameObject.tag)
         {
-            player.Hit();
-            Zeroing();
-        }
-        else if (collision.gameObject.tag == BDNames.Player)
-        {
-            player = collision.gameObject.GetComponent<PlayerManager>();
-            damage = player.GetDamage();
+            case TagsNames.Respawn:
+                //player.Hit();
+                Zeroing();
+                break;
+
+            case TagsNames.Player:
+                //player = collision.gameObject.GetComponent<Player>();
+                //damage = player.stats.GetDamage();
+                break;
         }
     }
 }
