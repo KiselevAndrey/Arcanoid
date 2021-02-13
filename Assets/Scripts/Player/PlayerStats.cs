@@ -12,14 +12,7 @@ public class PlayerStats : MonoBehaviour
     int _life;
     int _damage;
 
-    public int GetDamage() => _damage;
-    public void AddDamage(int value)
-    {
-        _damage += value;
-        if (_damage < 1) _damage = 1;
-        UpdateDamageNumberPict();
-    }
-
+    #region Awake-Start
     private void Awake()
     {
         _life = player.playerSO.startLifes;
@@ -31,7 +24,9 @@ public class PlayerStats : MonoBehaviour
         UpdateLifeNumberPict();
         UpdateDamageNumberPict();
     }
+    #endregion
 
+    #region Life
     public void Hit()
     {
         _life--;
@@ -48,6 +43,18 @@ public class PlayerStats : MonoBehaviour
     {
         life.SetNumber(_life);
     }
+    #endregion
+
+    #region Damage
+    public int GetDamage() => _damage;
+
+    public void AddDamage(int value)
+    {
+        _damage += value;
+        if (_damage < 1) _damage = 1;
+        UpdateDamageNumberPict();
+    }
 
     void UpdateDamageNumberPict() => damage.SetNumber(_damage);
+    #endregion
 }
