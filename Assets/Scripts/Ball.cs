@@ -47,7 +47,7 @@ public class Ball : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case TagsNames.Player:
-                player = collision.gameObject.GetComponent<Player>();
+                player = collision.gameObject.GetComponentInParent<Player>();
                 stats.Damage = player.stats.GetDamage();
                 break;
         }

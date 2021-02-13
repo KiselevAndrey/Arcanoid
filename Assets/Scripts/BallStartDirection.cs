@@ -2,9 +2,10 @@
 
 public class BallStartDirection : MonoBehaviour
 {
-    int minX, maxX, minY, maxY;
+    [SerializeField] int minX, maxX, y;
 
-    int x, y;
+    int x;
+    float z;
     bool upX, upY;
 
     Vector3 target;
@@ -12,13 +13,15 @@ public class BallStartDirection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        x = minX;
+        z = transform.position.z;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ChangeCoordinate(ref x, ref upX, minX, maxX);
+        target = new Vector3(x, y, z).normalized + transform.position;
     }
 
     private void OnDrawGizmos()
@@ -38,6 +41,6 @@ public class BallStartDirection : MonoBehaviour
                 break;
         }
 
-        if (coord >= max || coord <= min) isUp = !isUp;
+        if (coord > max || coord < min) isUp = !isUp;
     }
 }
