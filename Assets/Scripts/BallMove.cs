@@ -5,7 +5,7 @@ public class BallMove : MonoBehaviour
     [Header("Связывающие данные")]
     [SerializeField] Ball ball;
 
-    [SerializeField, Range(1, 10)] float speed;
+    [SerializeField, Range(1, 10)] public float startSpeed;
 
     Rigidbody2D _rb;
     Collider2D _collider;
@@ -13,6 +13,7 @@ public class BallMove : MonoBehaviour
 
     bool _isStarted;
     int _touchWallCount;
+    public float speed;
 
     #region Awake Update
     private void Awake()
@@ -22,7 +23,12 @@ public class BallMove : MonoBehaviour
         _trail = GetComponentInChildren<TrailRenderer>();
         //_trail.colorGradient.colorKeys[0].color
     }
-    
+
+    private void Start()
+    {
+        Zeroing();
+    }
+
     private void FixedUpdate()
     {
         switch (_isStarted)
@@ -45,6 +51,7 @@ public class BallMove : MonoBehaviour
         ZeroingTouches();
         StartBall(false);
 
+        ball.startDirection.drawGizmo = true;
         _isStarted = false;
     }
 
@@ -60,8 +67,10 @@ public class BallMove : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            GetRandomStartedForce();
             StartBall(true);
+            _rb.velocity = ball.startDirection.GetForseDirection() - transform.position;
+            _isStarted = true;
+            ball.startDirection.drawGizmo = false;
         }
     }
     #endregion
@@ -75,8 +84,6 @@ public class BallMove : MonoBehaviour
     void GetRandomStartedForce()
     {
         _rb.velocity = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized;
-        UpdateVelocity(speed);
-
         _isStarted = true;
     }
 

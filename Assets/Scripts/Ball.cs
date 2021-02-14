@@ -11,12 +11,18 @@ public class Ball : MonoBehaviour
     public BallStats stats;
     public BallStartDirection startDirection;
 
-    public Player player;
+    [HideInInspector] public Player player;
 
     private void Start()
     {
         player = gameManager.players[indexInGame];
+        SetDamage();
+    }
+
+    void SetDamage()
+    {
         stats.Damage = player.stats.GetDamage();
+        move.speed = move.startSpeed + stats.Damage;
     }
 
     #region OnEnter2D
@@ -35,7 +41,7 @@ public class Ball : MonoBehaviour
 
             case TagsNames.Player:
                 player = collision.gameObject.GetComponentInParent<Player>();
-                stats.Damage = player.stats.GetDamage();
+                SetDamage();
                 break;
         }
 
@@ -48,7 +54,7 @@ public class Ball : MonoBehaviour
         {
             case TagsNames.Player:
                 player = collision.gameObject.GetComponentInParent<Player>();
-                stats.Damage = player.stats.GetDamage();
+                SetDamage();
                 break;
         }
     }

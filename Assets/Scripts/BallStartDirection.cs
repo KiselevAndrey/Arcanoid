@@ -2,26 +2,31 @@
 
 public class BallStartDirection : MonoBehaviour
 {
-    [SerializeField] int minX, maxX, y;
+    [SerializeField, Min(1)] int diffX;
+    [SerializeField, Min(1)] int speed;
+    [HideInInspector] public bool drawGizmo = true;
 
-    int x;
+    int x, y;
     float z;
-    bool upX, upY;
+    bool upX;
 
     Vector3 target;
 
-    // Start is called before the first frame update
     void Start()
     {
-        x = minX;
+        x = -diffX;
         z = transform.position.z;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        ChangeCoordinate(ref x, ref upX, minX, maxX);
-        target = new Vector3(x, y, z).normalized + transform.position;
+        if (drawGizmo)
+        {
+            ChangeCoordinate();
+            target = new Vector3(x, y, z).normalized + transform.position;
+        }
+        else
+            target = transform.position;
     }
 
     private void OnDrawGizmos()
@@ -29,18 +34,21 @@ public class BallStartDirection : MonoBehaviour
         Gizmos.DrawLine(transform.position, target);
     }
 
-    void ChangeCoordinate(ref int coord, ref bool isUp, int min, int max)
+    void ChangeCoordinate()
     {
-        switch (isUp)
+        switch (upX)
         {
             case true:
-                coord++;
+                x += speed;
                 break;
             case false:
-                coord--;
+                x -= speed;
                 break;
         }
+        if (x > diffX || x < -diffX) upX = !upX;
 
-        if (coord > max || coord < min) isUp = !isUp;
+        y = Mathf.Abs(Mathf.Abs(x) - diffX);
     }
+
+    public Vector3 GetForseDirection() => target;
 }

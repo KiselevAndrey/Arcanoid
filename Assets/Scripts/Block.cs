@@ -11,23 +11,31 @@ public class Block : MonoBehaviour
     [SerializeField] Number health;
 
    // PlayerManager _player;
-    BlockInstantiater _instantiater;
     SpriteRenderer _spriteRenderer;
     Collider2D _coll2D;
-    int _lifes = 0;
+    int _lifes;
+
+    #region Awake Start
+    private void Awake()
+    {
+        _coll2D = GetComponent<Collider2D>();
+
+        if (isInvisible)
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+    }
 
     private void Start()
     {
-        _instantiater = GameObject.FindGameObjectWithTag(TagsNames.BlockInstantiater).GetComponent<BlockInstantiater>();
-        _coll2D = GetComponent<Collider2D>();
 
         if(isInvisible)
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.enabled = false;
             health.gameObject.SetActive(false);
         }
     }
+    #endregion
 
     bool HitPunch(int damage, Player player)
     {
