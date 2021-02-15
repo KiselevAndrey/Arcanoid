@@ -6,6 +6,7 @@ public class BallMove : MonoBehaviour
     [SerializeField] Ball ball;
 
     [SerializeField, Range(1, 10)] public float startSpeed;
+    [HideInInspector] public float speed;
 
     Rigidbody2D _rb;
     Collider2D _collider;
@@ -13,7 +14,6 @@ public class BallMove : MonoBehaviour
 
     bool _isStarted;
     int _touchWallCount;
-    public float speed;
 
     #region Awake Update
     private void Awake()
