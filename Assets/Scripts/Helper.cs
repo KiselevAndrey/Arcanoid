@@ -35,4 +35,9 @@ public static class Helper
     {
         return rng.Next(2) != 0;
     }
+    
+    /// <summary>
+    /// Шанс получить true в соотношение value к 100
+    /// </summary>
+    public static bool RandomBoolPercent(int value) => rng.Next(100) <= value;
 }

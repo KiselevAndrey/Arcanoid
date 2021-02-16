@@ -27,7 +27,7 @@ public class PlayerScore : MonoBehaviour
 
     public void UpdateScore()
     {
-        scoreText.text = player.score.ToString();
+        scoreText.text = player.playerSO.score.ToString(); ;
         currentScoreText.text = player.playerSO.currentScore.ToString();
     }
 

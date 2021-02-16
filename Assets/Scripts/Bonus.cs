@@ -13,48 +13,43 @@ public class Bonus : MonoBehaviour
 
 
     Rigidbody2D _rb;
+    BonusName bonusName;
 
-    private void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+    #region Start Update
+    private void Start() => _rb = GetComponent<Rigidbody2D>();
 
-    private void Update()
-    {
-        UpdateVelocity(speed);
-    }
+    private void Update() => UpdateVelocity(speed);
+    #endregion
 
+    #region Create Bonus
     public void NewBonus(BonusSO bonus)
     {
         bonusSO = bonus;
+        bonusName = bonusSO.bonusName;
         spriteRenderer.sprite = bonus.sprite;
-
-        if(bonus.bonusName == BonusName.Random)
-        {
-            var temp = System.Enum.GetValues(typeof(BonusName));
-            bonusSO = (BonusSO)temp.GetValue(1);
-        }
     }
-
-    public void SetForce(int difficult)
-    {
-        bonusSO.SetForce(Random.Range(1, difficult + 1) * bonusSO.multiply);
-    }
-
+    
     public void IsPositive(bool value)
     {
         bonusSO.isPositive = value;
 
-        if (bonusSO.bonusName == BonusName.Random) return;
+        if (bonusName == BonusName.Random) return;
 
         spriteRenderer.color = bonusSO.isPositive ? goodBonus : badBonus;
     }
 
-    void UpdateVelocity(float speedMultiply)
+    public void SetForce(int difficult) => bonusSO.SetForce(Random.Range(1, difficult + 1) * bonusSO.multiply);
+    #endregion
+
+    void UpdateVelocity(float speedMultiply) => _rb.velocity = _rb.velocity.normalized * speedMultiply;
+
+    public void BonusIsNotRandom()
     {
-        _rb.velocity = _rb.velocity.normalized * speedMultiply;
+        BonusName[] temp = (BonusName[])System.Enum.GetValues(typeof(BonusName));
+        bonusName = temp[Random.Range(0, temp.Length)];
     }
 
+    #region Collision Enter
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
@@ -72,20 +67,25 @@ public class Bonus : MonoBehaviour
 
     void BonusForPlayer(Collision2D collision)
     {
-        switch (bonusSO.bonusName)
+        switch (bonusName)
         {
             case BonusName.Damage:
-                collision.gameObject.GetComponent<Player>().stats.AddDamage((int)bonusSO.Force);
+                collision.gameObject.GetComponentInParent<Player>().stats.AddDamage((int)bonusSO.Force);
                 break;
 
             case BonusName.SpeedPlatform:
-                collision.gameObject.GetComponent<PlayerMove>().AddSpeed(bonusSO.Force);
+                collision.gameObject.GetComponentInParent<PlayerMove>().AddSpeed(bonusSO.Force);
                 break;
 
             case BonusName.Score:
-                collision.gameObject.GetComponent<Player>().score.AddScore((int)bonusSO.Force);
+                collision.gameObject.GetComponentInParent<Player>().score.AddScore((int)bonusSO.Force);
+                break;
+
+            case BonusName.Random:
+                BonusIsNotRandom();
+                BonusForPlayer(collision);
                 break;
         }
     }
-
+    #endregion;
 }

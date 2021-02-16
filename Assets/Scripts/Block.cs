@@ -6,7 +6,7 @@ public class Block : MonoBehaviour
     [SerializeField] int lifes;
     [SerializeField] public int score;
     [SerializeField] bool isInvisible;
-    [SerializeField] bool isImmortal;
+    [SerializeField] public bool isImmortal;
 
     [Header("Доп связи")]
     [SerializeField] Number health;
@@ -24,6 +24,9 @@ public class Block : MonoBehaviour
 
         if (isInvisible)
             _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (isImmortal)
+            health.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -63,11 +66,16 @@ public class Block : MonoBehaviour
         // пробило
         else
         {
-            player.score.AddScore(damage-currentLife + score);
-            _counter.BlockDied(transform.position);
-            Destroy(gameObject);
+            player.score.AddScore(damage - currentLife + score);
+            BlockDied();
             return true;
         }        
+    }
+
+    void BlockDied()
+    {
+        _counter.BlockDied(transform.position);
+        Destroy(gameObject);
     }
 
     void SetVisibility(bool value)
@@ -84,6 +92,8 @@ public class Block : MonoBehaviour
         lifes = value;
         UpdateHealth();
     }
+
+    public int GetLifes() => lifes;
     #endregion
 
     #region OnEnter OnExit
