@@ -12,14 +12,13 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] Text currentScoreText;
 
 
-    void Awake()
-    {
-        player.playerSO.Zeroing();
-    }
+    //void Awake()
+    //{
+    //    player.playerSO.Zeroing();
+    //}
 
     public void Hit()
     {
-
         player.playerSO.UpdateBestScore();
         bestScoreText.text = player.playerSO.bestScore.ToString();
         UpdateScore();

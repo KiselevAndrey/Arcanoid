@@ -75,6 +75,6 @@ public class BlockCounter : MonoBehaviour
 
     void Win()
     {
-        print("win");
+        gameManager.Win();
     }
 }

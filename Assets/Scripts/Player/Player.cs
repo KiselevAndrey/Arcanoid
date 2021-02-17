@@ -12,12 +12,7 @@ public class Player : MonoBehaviour
     public PlayerScore score;
     public PlayerStats stats;
     public Savior savior;
-
-    private void Awake()
-    {
-        
-    }
-
+    
     public void Hit()
     {
         score.Hit();

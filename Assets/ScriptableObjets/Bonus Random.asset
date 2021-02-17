@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: -1933198801662723888, guid: 31865a8ebdab51649a399a3ce283e4d4, type: 3}
   bonusName: 0
   multiply: 2
-  isPositive: 0
+  isPositive: 1

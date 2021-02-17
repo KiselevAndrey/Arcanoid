@@ -74,17 +74,23 @@ public class Bonus : MonoBehaviour
                 break;
 
             case BonusName.SpeedPlatform:
-                collision.gameObject.GetComponentInParent<PlayerMove>().AddSpeed(bonusSO.Force);
+                collision.gameObject.GetComponent<PlayerMove>().AddSpeed(bonusSO.Force);
                 break;
 
             case BonusName.Score:
-                collision.gameObject.GetComponentInParent<Player>().score.AddScore((int)bonusSO.Force);
+                collision.gameObject.GetComponentInParent<Player>().score.AddScore((int)bonusSO.Force * Random.Range(1, 5));
                 break;
 
             case BonusName.Random:
                 BonusIsNotRandom();
                 BonusForPlayer(collision);
                 break;
+        }
+
+        // бонус за вредность
+        if (!bonusSO.isPositive)
+        {
+            collision.gameObject.GetComponentInParent<Player>().score.AddScore((int)bonusSO.Force * 10);
         }
     }
     #endregion;

@@ -25,6 +25,14 @@ public class Ball : MonoBehaviour
         move.speed = move.startSpeed + stats.Damage;
     }
 
+    /// <summary>
+    /// Метод, кот покажет надо ли уничтожать мяч или перенести его на платформу к игроку
+    /// </summary>
+    public void CheckBallDestroy()
+    {
+
+    }
+
     #region OnEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
     {
