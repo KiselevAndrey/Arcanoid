@@ -81,9 +81,9 @@ public class BallMove : MonoBehaviour
         _collider.isTrigger = !value;
     }
 
-    void GetRandomStartedForce()
+    public void GetRandomStartedForce(float multiply = 1)
     {
-        _rb.velocity = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized;
+        _rb.velocity = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized * multiply;
         _isStarted = true;
     }
 

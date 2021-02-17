@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject winLog;
     
-    [HideInInspector] public Player[] players;
-    [HideInInspector] public Ball[] balls;
+    [HideInInspector] public List<Player> players;
+    [HideInInspector] public List<Ball> balls;
 
     private void Awake()
     {
-        players = FindObjectsOfType<Player>();
-        balls = FindObjectsOfType<Ball>();
+        players = FindObjectsOfType<Player>().ToList();
+        balls = FindObjectsOfType<Ball>().ToList();
 
         SetIndex();
     }
@@ -20,23 +22,21 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void SetIndex()
     {
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Count; i++)
             players[i].indexInGame = i;
 
-        for (int i = 0; i < balls.Length; i++)
+        for (int i = 0; i < balls.Count; i++)
             balls[i].indexInGame = i;
     }
 
     public void Win()
     {
         winLog.SetActive(true);
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < balls.Count; i++)
         {
-            balls[i]?.move.Zeroing();
-        }
-        for (int i = players.Length-1; i < balls.Length; i++)
-        {
-            balls[i].gameObject();
+            if (i < players.Count) balls[i].move.Zeroing();
+            else Destroy(balls[i].gameObject);
         }
     }
+
 }

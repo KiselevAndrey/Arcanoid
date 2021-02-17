@@ -13,7 +13,8 @@ public class Bonus : MonoBehaviour
 
 
     Rigidbody2D _rb;
-    BonusName bonusName;
+    BonusName _bonusName;
+    bool _isPositive;
 
     #region Start Update
     private void Start() => _rb = GetComponent<Rigidbody2D>();
@@ -25,29 +26,56 @@ public class Bonus : MonoBehaviour
     public void NewBonus(BonusSO bonus)
     {
         bonusSO = bonus;
-        bonusName = bonusSO.bonusName;
+        _bonusName = bonusSO.bonusName;
         spriteRenderer.sprite = bonus.sprite;
     }
     
     public void IsPositive(bool value)
     {
-        bonusSO.isPositive = value;
-
-        if (bonusName == BonusName.Random) return;
-
-        spriteRenderer.color = bonusSO.isPositive ? goodBonus : badBonus;
+        switch (_bonusName)
+        {
+            case BonusName.Random:
+            case BonusName.DublicateBall:
+                break;
+            default:
+                _isPositive = value;
+                spriteRenderer.color = _isPositive ? goodBonus : badBonus;
+                break;
+        }
     }
 
-    public void SetForce(int difficult) => bonusSO.SetForce(Random.Range(1, difficult + 1) * bonusSO.multiply);
+    public void SetForce(int difficult) => bonusSO.Force = Random.Range(1, difficult + 1) * bonusSO.multiply * (_isPositive ? 1 : -1);
     #endregion
 
     void UpdateVelocity(float speedMultiply) => _rb.velocity = _rb.velocity.normalized * speedMultiply;
 
-    public void BonusIsNotRandom()
+    #region From Collisions Detected
+    /// <summary>
+    /// Определение рандомного бонуса на не рандомный
+    /// </summary>
+    void BonusIsNotRandom()
     {
         BonusName[] temp = (BonusName[])System.Enum.GetValues(typeof(BonusName));
-        bonusName = temp[Random.Range(0, temp.Length)];
+        _bonusName = temp[Random.Range(0, temp.Length)];
     }
+
+    /// <summary>
+    /// раздвоение первого мяча принадлежавшего игроку
+    /// </summary>
+    void DoublerBall(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponentInParent<Player>();
+        print(player.gameManager.balls.Count);
+        for (int i = 0; i < player.gameManager.balls.Count; i++)
+        {
+            if (player.gameManager.balls[i].player == player)
+            {
+                print("start instantiate");
+                player.gameManager.balls[i].Duplicate();
+            }
+        }
+    }
+    #endregion
 
     #region Collision Enter
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,10 +95,10 @@ public class Bonus : MonoBehaviour
 
     void BonusForPlayer(Collision2D collision)
     {
-        switch (bonusName)
+        switch (_bonusName)
         {
             case BonusName.Damage:
-                collision.gameObject.GetComponentInParent<Player>().stats.AddDamage((int)bonusSO.Force);
+                collision.gameObject.GetComponent<PlayerStats>().AddDamage((int)bonusSO.Force);
                 break;
 
             case BonusName.SpeedPlatform:
@@ -78,20 +106,22 @@ public class Bonus : MonoBehaviour
                 break;
 
             case BonusName.Score:
-                collision.gameObject.GetComponentInParent<Player>().score.AddScore((int)bonusSO.Force * Random.Range(1, 5));
+                collision.gameObject.GetComponent<PlayerScore>().AddScore((int)bonusSO.Force * Random.Range(1, 6));
                 break;
 
             case BonusName.Random:
                 BonusIsNotRandom();
                 BonusForPlayer(collision);
                 break;
+
+            case BonusName.DublicateBall:
+                DoublerBall(collision);
+                break;
         }
 
         // бонус за вредность
-        if (!bonusSO.isPositive)
-        {
-            collision.gameObject.GetComponentInParent<Player>().score.AddScore((int)bonusSO.Force * 10);
-        }
+        if (!_isPositive)
+            collision.gameObject.GetComponent<PlayerScore>().AddScore((int)bonusSO.Force * 2);
     }
     #endregion;
 }

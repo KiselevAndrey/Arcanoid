@@ -25,12 +25,25 @@ public class Ball : MonoBehaviour
         move.speed = move.startSpeed + stats.Damage;
     }
 
-    /// <summary>
-    /// Метод, кот покажет надо ли уничтожать мяч или перенести его на платформу к игроку
-    /// </summary>
-    public void CheckBallDestroy()
+    public void TryDeleteBall()
     {
+        if (gameManager.balls.Count > gameManager.players.Count)
+        {
+            gameManager.balls.Remove(this);
+            Destroy(gameObject);
+        }
+        else
+        {
+            player.Hit();
+            move.Zeroing();
+        }
+    }
 
+    public void Duplicate()
+    {
+        Ball ball = Instantiate(gameObject).GetComponent<Ball>();
+        ball.move.GetRandomStartedForce(0.05f);
+        gameManager.balls.Add(ball);
     }
 
     #region OnEnter2D
@@ -43,8 +56,8 @@ public class Ball : MonoBehaviour
                 return;
 
             case TagsNames.Respawn:
-                player.Hit();
-                move.Zeroing();
+                player = collision.gameObject.GetComponentInParent<Player>();
+                TryDeleteBall();
                 break;
 
             case TagsNames.Player:
