@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonuses:
-  - {fileID: 11400000, guid: f1cea967a0af22d46a0c2ba6103c2046, type: 2}
+  - {fileID: 11400000, guid: e56b2be9a0e0cf641ac4f65ffa0d9e04, type: 2}
   bonusPrefab: {fileID: 6439112867364957646, guid: 21d7d39aaf69f1741988a0860386934e,
     type: 3}
   multyplyGoodBonus: 67

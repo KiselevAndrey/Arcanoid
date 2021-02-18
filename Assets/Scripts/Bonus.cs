@@ -65,15 +65,20 @@ public class Bonus : MonoBehaviour
     void DoublerBall(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponentInParent<Player>();
-        print(player.gameManager.balls.Count);
+
+        // пробегаемся по всем мячам в игре
         for (int i = 0; i < player.gameManager.balls.Count; i++)
         {
+            // ищем мяч, кот относится к нужному игроку
             if (player.gameManager.balls[i].player == player)
             {
-                print("start instantiate");
                 player.gameManager.balls[i].Duplicate();
+                return;
             }
         }
+
+        // если нет у игрока мячей, то получить бонус
+        player.score.AddScore((int)(bonusSO.Force * player.gameManager.balls.Count));
     }
     #endregion
 
@@ -106,7 +111,7 @@ public class Bonus : MonoBehaviour
                 break;
 
             case BonusName.Score:
-                collision.gameObject.GetComponent<PlayerScore>().AddScore((int)bonusSO.Force * Random.Range(1, 6));
+                collision.gameObject.GetComponent<PlayerScore>().AddScore((int)(bonusSO.Force * Random.Range(1, 6)));
                 break;
 
             case BonusName.Random:
@@ -121,7 +126,7 @@ public class Bonus : MonoBehaviour
 
         // бонус за вредность
         if (!_isPositive)
-            collision.gameObject.GetComponent<PlayerScore>().AddScore((int)bonusSO.Force * 2);
+            collision.gameObject.GetComponent<PlayerScore>().AddScore((int)(bonusSO.Force * 2));
     }
     #endregion;
 }

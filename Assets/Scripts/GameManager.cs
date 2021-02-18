@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<Player> players;
     [HideInInspector] public List<Ball> balls;
 
+    #region Awake Start
     private void Awake()
     {
         players = FindObjectsOfType<Player>().ToList();
@@ -16,6 +17,15 @@ public class GameManager : MonoBehaviour
 
         SetIndex();
     }
+
+    private void Start()
+    {
+        for (int i = 0; i < balls.Count; i++)
+        {
+            balls[i].move.Zeroing();
+        }
+    }
+    #endregion
 
     /// <summary>
     /// Установка индексов у объектов

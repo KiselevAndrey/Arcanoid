@@ -23,12 +23,7 @@ public class BallMove : MonoBehaviour
         _trail = GetComponentInChildren<TrailRenderer>();
         //_trail.colorGradient.colorKeys[0].color
     }
-
-    private void Start()
-    {
-        Zeroing();
-    }
-
+    
     private void FixedUpdate()
     {
         switch (_isStarted)

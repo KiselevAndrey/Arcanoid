@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        player = gameManager.players[indexInGame];
+        player = gameManager.players[0];
         SetDamage();
     }
 
@@ -41,9 +41,11 @@ public class Ball : MonoBehaviour
 
     public void Duplicate()
     {
-        Ball ball = Instantiate(gameObject).GetComponent<Ball>();
-        ball.move.GetRandomStartedForce(0.05f);
-        gameManager.balls.Add(ball);
+        print("duplicate");
+
+        //Ball ball = Instantiate(gameObject).GetComponent<Ball>();
+        //ball.move.GetRandomStartedForce(0.05f);
+        //gameManager.balls.Add(ball);
     }
 
     #region OnEnter2D
