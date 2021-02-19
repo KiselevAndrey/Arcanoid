@@ -3,11 +3,11 @@ using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
-{
-    [SerializeField] GameObject winLog;
-    
+{    
     [HideInInspector] public List<Player> players;
     [HideInInspector] public List<Ball> balls;
+
+    GameOverLog _gameOverLog;
 
     #region Awake Start
     private void Awake()
@@ -16,10 +16,15 @@ public class GameManager : MonoBehaviour
         balls = FindObjectsOfType<Ball>().ToList();
 
         SetIndex();
+
+        _gameOverLog = GetComponent<GameOverLog>();
     }
 
     private void Start()
     {
+        // обнуление игроков
+
+        // обнуление мячей
         for (int i = 0; i < balls.Count; i++)
         {
             balls[i].move.Zeroing();
@@ -39,14 +44,10 @@ public class GameManager : MonoBehaviour
             balls[i].indexInGame = i;
     }
 
-    public void Win()
+    public void GameOver(bool win)
     {
-        winLog.SetActive(true);
-        for (int i = 0; i < balls.Count; i++)
-        {
-            if (i < players.Count) balls[i].move.Zeroing();
-            else Destroy(balls[i].gameObject);
-        }
+        Time.timeScale = 0;
+        _gameOverLog.GameOver(win);
     }
 
 }

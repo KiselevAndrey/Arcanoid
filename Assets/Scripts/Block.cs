@@ -11,10 +11,10 @@ public class Block : MonoBehaviour
     [Header("Доп связи")]
     [SerializeField] Number health;
 
-    // PlayerManager _player;
     BlockCounter _counter;
     SpriteRenderer _spriteRenderer;
     Collider2D _coll2D;
+    bool _isDie;
 
     #region Awake Start
     private void Awake()
@@ -74,6 +74,9 @@ public class Block : MonoBehaviour
 
     void BlockDied()
     {
+        if (_isDie) return;
+
+        _isDie = true;
         _counter.BlockDied(transform.position);
         Destroy(gameObject);
     }

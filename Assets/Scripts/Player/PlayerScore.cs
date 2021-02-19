@@ -11,11 +11,10 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] Text bestScoreText;
     [SerializeField] Text currentScoreText;
 
-
-    //void Awake()
-    //{
-    //    player.playerSO.Zeroing();
-    //}
+    void Awake()
+    {
+        player.playerSO.Zeroing();
+    }
 
     public void Hit()
     {

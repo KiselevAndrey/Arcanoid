@@ -34,8 +34,7 @@ public class PlayerStats : MonoBehaviour
 
         if (_life <= 0)
         {
-            print("Game Over");
-            Destroy(gameObject);
+            player.gameManager.GameOver(false);
         }
     }
 

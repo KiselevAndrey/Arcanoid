@@ -6,6 +6,4 @@ public class BonusSO : ScriptableObject
     public Sprite sprite;
     public BonusName bonusName;
     [Min(0)] public float multiply;
-    
-    public float Force { get; set; }
 }

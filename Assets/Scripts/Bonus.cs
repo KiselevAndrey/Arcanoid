@@ -14,7 +14,9 @@ public class Bonus : MonoBehaviour
 
     Rigidbody2D _rb;
     BonusName _bonusName;
-    bool _isPositive;
+
+    float _force;
+    bool _isPositive = true;
 
     #region Start Update
     private void Start() => _rb = GetComponent<Rigidbody2D>();
@@ -44,7 +46,7 @@ public class Bonus : MonoBehaviour
         }
     }
 
-    public void SetForce(int difficult) => bonusSO.Force = Random.Range(1, difficult + 1) * bonusSO.multiply * (_isPositive ? 1 : -1);
+    public void SetForce(int difficult) => _force = Random.Range(1, difficult + 1) * bonusSO.multiply * (_isPositive ? 1 : -1);
     #endregion
 
     void UpdateVelocity(float speedMultiply) => _rb.velocity = _rb.velocity.normalized * speedMultiply;
@@ -78,7 +80,7 @@ public class Bonus : MonoBehaviour
         }
 
         // если нет у игрока мячей, то получить бонус
-        player.score.AddScore((int)(bonusSO.Force * player.gameManager.balls.Count));
+        player.score.AddScore((int)(_force * player.gameManager.balls.Count));
     }
     #endregion
 
@@ -103,15 +105,15 @@ public class Bonus : MonoBehaviour
         switch (_bonusName)
         {
             case BonusName.Damage:
-                collision.gameObject.GetComponent<PlayerStats>().AddDamage((int)bonusSO.Force);
+                collision.gameObject.GetComponent<PlayerStats>().AddDamage((int)_force);
                 break;
 
             case BonusName.SpeedPlatform:
-                collision.gameObject.GetComponent<PlayerMove>().AddSpeed(bonusSO.Force);
+                collision.gameObject.GetComponent<PlayerMove>().AddSpeed(_force);
                 break;
 
             case BonusName.Score:
-                collision.gameObject.GetComponent<PlayerScore>().AddScore((int)(bonusSO.Force * Random.Range(1, 6)));
+                collision.gameObject.GetComponent<PlayerScore>().AddScore((int)(_force * Random.Range(1, 6)));
                 break;
 
             case BonusName.Random:
@@ -126,7 +128,7 @@ public class Bonus : MonoBehaviour
 
         // бонус за вредность
         if (!_isPositive)
-            collision.gameObject.GetComponent<PlayerScore>().AddScore((int)(bonusSO.Force * 2));
+            collision.gameObject.GetComponent<PlayerScore>().AddScore((int)(_force * 2));
     }
     #endregion;
 }

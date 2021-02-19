@@ -69,12 +69,8 @@ public class BlockCounter : MonoBehaviour
         if (_blockCount <= 0)
         {
             print("win");
+            gameManager.GameOver(true);
         }
     }
     #endregion
-
-    void Win()
-    {
-        gameManager.Win();
-    }
 }
