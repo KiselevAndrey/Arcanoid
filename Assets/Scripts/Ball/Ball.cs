@@ -41,11 +41,10 @@ public class Ball : MonoBehaviour
 
     public void Duplicate()
     {
-        print("duplicate");
-
-        //Ball ball = Instantiate(gameObject).GetComponent<Ball>();
-        //ball.move.GetRandomStartedForce(0.05f);
-        //gameManager.balls.Add(ball);
+        Ball ball = Instantiate(this);
+        ball.move.SetVelocity(move.GetVelosity());
+        ball.move.GetRandomForce(0.5f);
+        gameManager.balls.Add(ball);
     }
 
     #region OnEnter2D

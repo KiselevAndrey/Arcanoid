@@ -76,11 +76,20 @@ public class BallMove : MonoBehaviour
         _collider.isTrigger = !value;
     }
 
-    public void GetRandomStartedForce(float multiply = 1)
+    public void GetRandomForce(float multiply = 1)
     {
-        _rb.velocity = new Vector2(Random.Range(-100, 101), Random.Range(-100, 101)).normalized * multiply;
+        Vector2 temp = _rb.velocity;
+        temp = new Vector2(temp.x + Random.Range(-temp.x, temp.x) * multiply, temp.y + Random.Range(-temp.y, temp.y) * multiply);
+
+        _rb.velocity = temp;
         _isStarted = true;
     }
+
+    #region Velocity
+    public void SetVelocity(Vector2 vector2) => _rb.velocity = vector2;
+
+    public Vector2 GetVelosity() => _rb.velocity;
+    #endregion
 
     /// <summary>
     /// Удар об стену
@@ -90,7 +99,7 @@ public class BallMove : MonoBehaviour
         _touchWallCount++;
         if (_touchWallCount > 5)
         {
-            GetRandomStartedForce();
+            GetRandomForce();
             ZeroingTouches();
         }
     }
