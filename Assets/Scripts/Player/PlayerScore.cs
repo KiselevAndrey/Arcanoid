@@ -7,13 +7,15 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] Player player;
 
     [Header("Текстовые объекты, связанные со счетом")]
+    [SerializeField] Canvas scoreCanvas;
     [SerializeField] Text scoreText;
     [SerializeField] Text bestScoreText;
     [SerializeField] Text currentScoreText;
 
+
     void Awake()
     {
-        player.playerSO.Zeroing();
+        //player.playerSO.Zeroing();
     }
 
     public void Hit()
@@ -33,5 +35,10 @@ public class PlayerScore : MonoBehaviour
     {
         player.playerSO.AddScore(value);
         UpdateScore();
+    }
+
+    public void GameOver()
+    {
+        scoreCanvas.gameObject.SetActive(false);
     }
 }

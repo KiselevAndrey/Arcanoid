@@ -16,14 +16,18 @@ public class BallStartDirection : MonoBehaviour
     {
         x = -diffX;
         z = transform.position.z;
+        target = new Vector3(x, y, z).normalized + transform.position;
     }
 
     void Update()
     {
         if (drawGizmo)
         {
-            ChangeCoordinate();
-            target = new Vector3(x, y, z).normalized + transform.position;
+            if (Time.timeScale != 0)
+            {
+                ChangeCoordinate();
+                target = new Vector3(x, y, z).normalized + transform.position;
+            }
         }
         else
             target = transform.position;

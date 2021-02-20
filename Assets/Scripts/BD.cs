@@ -21,3 +21,9 @@ public static class BonusNames
     public const string Damage = "Damage";
 }
 
+public static class LVLNames
+{
+    public static string IntToLVLName(int lvl) => lvl + "_LVL";
+    public static int LVLNameToInt(string sceneName) => sceneName[0];
+}
+

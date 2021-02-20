@@ -18,4 +18,9 @@ public class Player : MonoBehaviour
         score.Hit();
         stats.Hit();
     }
+
+    public void GameOver()
+    {
+        score.GameOver();
+    }
 }
