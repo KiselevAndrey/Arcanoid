@@ -41,4 +41,10 @@ public class Savior : MonoBehaviour
         life += value;
         UpdateLife();
     }
+
+    public void SetLife(int value)
+    {
+        life = value;
+        UpdateLife();
+    }
 }

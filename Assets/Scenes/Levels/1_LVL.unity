@@ -365,6 +365,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1515839059806971323, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: lvlStats
+      value: 
+      objectReference: {fileID: 11400000, guid: c7558e8a6085ced4e88c53b8b5e28a15,
+        type: 2}
+    - target: {fileID: 1587490481851729581, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4540635446516851155, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
         type: 3}
       propertyPath: m_IsActive
@@ -435,10 +446,30 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 511271011}
+    - target: {fileID: 4608312094299242054, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6468075958787113183, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
         type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434915051237781392, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623984379671143292, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623984379671143292, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b4072c03e4c7654a8ef3c968b72e45c, type: 3}

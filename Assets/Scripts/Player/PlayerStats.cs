@@ -15,8 +15,8 @@ public class PlayerStats : MonoBehaviour
     #region Awake-Start
     private void Awake()
     {
-        _life = player.playerSO.startLifes;
-        _damage = player.playerSO.startDamage;
+        //_life = player.playerSO.startLifes;
+        //_damage = player.playerSO.startDamage;
     }
 
     private void Start()
@@ -27,6 +27,12 @@ public class PlayerStats : MonoBehaviour
     #endregion
 
     #region Life
+    public void SetLife(int value)
+    {
+        _life = value;
+        UpdateLifeNumberPict();
+    }
+
     public void Hit()
     {
         _life--;
@@ -46,6 +52,12 @@ public class PlayerStats : MonoBehaviour
 
     #region Damage
     public int GetDamage() => _damage;
+
+    public void SetDamage(int value)
+    {
+        _damage = value;
+        UpdateDamageNumberPict();
+    }
 
     public void AddDamage(int value)
     {

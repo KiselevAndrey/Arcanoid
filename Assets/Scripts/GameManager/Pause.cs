@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] AudioMixerGroup mixer;
+
+    [Header("UI elements")]
+    [SerializeField] Toggle musicSwitcher;
+    [SerializeField] Slider volumSlider;
 
     [Header("Snapshots")]
     [SerializeField] AudioMixerSnapshot normal;
@@ -14,7 +19,19 @@ public class Pause : MonoBehaviour
 
     private void Start()
     {
+        LoadMusicOptions();
         ChangeSnapshots();
+    }
+
+    void LoadMusicOptions()
+    {
+        bool musicSwitch = PlayerPrefs.GetInt(MixerGroup.VolumeBackGround, 1) == 1;
+        musicSwitcher.isOn = musicSwitch;
+        ToggleMusic(musicSwitch);
+
+        float volume = PlayerPrefs.GetFloat(MixerGroup.VolumeMaster, 1);
+        volumSlider.value = volume;
+        ChangeVolume(volume);
     }
 
     public void Paused()
@@ -41,7 +58,17 @@ public class Pause : MonoBehaviour
         }
     }
 
-    public void ToggleMusic(bool enabled) => mixer.audioMixer.SetFloat(MixerGroup.VolumeBackGround, enabled ? 0 : -80);
+    public void ToggleMusic(bool enabled)
+    {
+        mixer.audioMixer.SetFloat(MixerGroup.VolumeBackGround, enabled ? 0 : -80);
 
-    public void ChangeVolume(float volume) => mixer.audioMixer.SetFloat(MixerGroup.VolumeMaster, Mathf.Lerp(-50, 0, volume));
+        PlayerPrefs.SetInt(MixerGroup.VolumeBackGround, enabled ? 1 : 0);
+    }
+
+    public void ChangeVolume(float volume)
+    {
+        mixer.audioMixer.SetFloat(MixerGroup.VolumeMaster, Mathf.Lerp(-50, 0, volume));
+
+        PlayerPrefs.SetFloat(MixerGroup.VolumeMaster, volume);
+    }
 }

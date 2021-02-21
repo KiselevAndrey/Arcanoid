@@ -22,10 +22,20 @@ public class Player : MonoBehaviour
         stats.Hit();
     }
 
+    #region NewGame Load Save GameOver
+    public void LoadPlayer(LVLStatsSO lvlStats)
+    {
+        stats.SetLife(lvlStats.startLifes);
+        stats.SetDamage(lvlStats.startDamage);
+        move.SetSpeed(lvlStats.startSpeed);
+        savior.SetLife(lvlStats.saviorLifes);
+    }
+
     public void GameOver()
     {
         score.GameOver();
     }
+    #endregion
 
     #region Magnette и все все все
     public void SetMagnette(float value) => _isMagnette = value > 0;

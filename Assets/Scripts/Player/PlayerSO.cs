@@ -1,32 +1,42 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName ="Player")]
 public class PlayerSO : ScriptableObject
 {
+    [Header("Стартовые характеристики")]
     [Min(1)] public int startLifes;
     [Min(1)] public int startDamage;
+    [Min(1)] public int startSpeed;
 
     [Header("Счет")]
     public int score;
-    public int bestScore;
     public int currentScore;
-
-    public void Zeroing()
-    {
-        score = 0;
-        bestScore = 0;
-        currentScore = 0;
-    }
-
-    public void UpdateBestScore()
-    {
-        if (currentScore > bestScore) bestScore = currentScore;
-        currentScore = 0;
-    }
 
     public void AddScore(int value)
     {
         score += value;
         currentScore += value;
+    }
+
+    public void NewGame()
+    {
+        score = 0;
+        NewRound();
+    }
+
+    public void NewRound()
+    {
+        currentScore = 0;
+    }
+
+    public void SavePlayer(Player player)
+    {
+
+    }
+
+    public void LoadPlayer(ref Player player)
+    {
+
     }
 }

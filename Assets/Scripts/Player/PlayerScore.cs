@@ -9,7 +9,6 @@ public class PlayerScore : MonoBehaviour
     [Header("Текстовые объекты, связанные со счетом")]
     [SerializeField] Canvas scoreCanvas;
     [SerializeField] Text scoreText;
-    [SerializeField] Text bestScoreText;
     [SerializeField] Text currentScoreText;
 
 
@@ -20,8 +19,6 @@ public class PlayerScore : MonoBehaviour
 
     public void Hit()
     {
-        player.playerSO.UpdateBestScore();
-        bestScoreText.text = player.playerSO.bestScore.ToString();
         UpdateScore();
     }
 

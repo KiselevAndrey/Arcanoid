@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     GameOverLog _gameOverLog;
     Pause _pause;
-    bool _isPause;
+    LVLOptions _lvlOptions;
 
     #region Awake Start Update
     private void Awake()
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
         _gameOverLog = GetComponent<GameOverLog>();
         _pause = GetComponent<Pause>();
+        _lvlOptions = GetComponentInChildren<LVLOptions>();
     }
 
     private void Start()
@@ -35,11 +36,17 @@ public class GameManager : MonoBehaviour
             case GameStatus.New:
                 for (int i = 0; i < players.Count; i++)
                 {
-                    players[i].playerSO.Zeroing();
+                    players[i].LoadPlayer(_lvlOptions.lvlStats);
+                    players[i].playerSO.NewGame();
                 }
                 break;
 
             case GameStatus.Load:
+                for (int i = 0; i < players.Count; i++)
+                {
+                    players[i].LoadPlayer(_lvlOptions.lvlStats);
+                    players[i].playerSO.NewRound();
+                }
                 break;
         }
 
@@ -93,6 +100,8 @@ public class GameManager : MonoBehaviour
     {
         gameOptions.gameStatus = GameStatus.New;
         gameOptions.maxLevel = 1;
+
+
         ManagerSceneStatic.LoadScene(LVLNames.IntToLVLName(1));
     }
 }

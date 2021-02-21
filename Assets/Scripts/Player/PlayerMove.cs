@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [Header("Данные по скрипту")]
     [SerializeField] public MovingType movingType;
     [SerializeField, Range(1, 10)] float moveSpeed;
+    [SerializeField, Range(1, 10)] float minSpeed;
 
     public float leftBoard;
     public float rightBoard;
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     Ball _ball;
     float _startPosY;
 
+    #region Start Update
     void Start()
     {
         _startPosY = transform.position.y;
@@ -29,6 +31,7 @@ public class PlayerMove : MonoBehaviour
     {
         MoveHorizontal();
     }
+    #endregion
 
     void MoveHorizontal()
     {
@@ -59,15 +62,20 @@ public class PlayerMove : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
     }
 
+    #region Speed
     /// <summary>
     /// Изменение скорости для бонуса
     /// </summary>
     /// <param name="value">На сколько изменится скорость</param>
     public void AddSpeed(float value)
     {
-        print(moveSpeed + " " + value); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        moveSpeed += value * moveSpeed / 10f;
-        print(moveSpeed); ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (moveSpeed < 2) moveSpeed = 2;
+        SetSpeed(moveSpeed + value * moveSpeed / 10f);
     }
+
+    public void SetSpeed(float value)
+    {
+        moveSpeed = value;
+        if (moveSpeed < minSpeed) moveSpeed = minSpeed;
+    }
+    #endregion
 }
