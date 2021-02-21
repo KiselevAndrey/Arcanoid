@@ -4,6 +4,7 @@ public class BallMove : MonoBehaviour
 {
     [Header("Связывающие данные")]
     [SerializeField] Ball ball;
+    [SerializeField] TrailRenderer trail;
 
     [SerializeField, Range(1, 10)] public float startSpeed;
     //[HideInInspector] 
@@ -11,18 +12,16 @@ public class BallMove : MonoBehaviour
 
     Rigidbody2D _rb;
     Collider2D _collider;
-    TrailRenderer _trail;
+    Vector2 _magnettePoint;
 
     bool _isStarted;
     int _touchWallCount;
-    Vector2 _magnettePoint;
 
     #region Awake Update
-    private void Awake()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
-        _trail = GetComponentInChildren<TrailRenderer>();
         //_trail.colorGradient.colorKeys[0].color
     }
     
@@ -55,7 +54,7 @@ public class BallMove : MonoBehaviour
     #endregion
 
     #region Move
-    void UpdateVelocity(float speedMultiply) => _rb.velocity = _rb.velocity.normalized * speedMultiply;
+    public void UpdateVelocity(float speedMultiply) => _rb.velocity = _rb.velocity.normalized * speedMultiply;
 
     void PasteToPlayerPlatform()
     {
@@ -64,34 +63,54 @@ public class BallMove : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            BallIsStarted(true);
-            _rb.velocity = ball.startDirection.GetForseDirection() - transform.position;
+            StartBall(false);
             ball.player.HaveMagnetteBall(false);
         }
     }
 
+    public void StartBall(bool random = false)
+    {
+        BallIsStarted(true);
+        switch (random)
+        {
+            case false:
+                _rb.velocity = ball.startDirection.GetForseDirection() - transform.position;
+                break;
+
+            case true:
+                GetRandomForce(0.5f);
+                break;
+        }
+    }
+
+    #region MagnettePoint
     public void NewMagnettePoint(Vector2 vector2)
     {
         _magnettePoint = vector2;
         BallIsStarted(false);
     }
+
+    public Vector2 GetMagnrttePoint() => _magnettePoint;
     #endregion
 
-    void BallIsStarted(bool value)
+    public void BallIsStarted(bool value)
     {
         _isStarted = value;
-        _trail.gameObject.SetActive(value);
         _collider.isTrigger = !value;
+        trail.gameObject.SetActive(value);
         ball.startDirection.drawGizmo = !value;
     }
+    #endregion
 
     public void GetRandomForce(float multiply = 1)
     {
         Vector2 temp = _rb.velocity;
-        temp = new Vector2(temp.x + Random.Range(-temp.x, temp.x) * multiply, temp.y + Random.Range(-temp.y, temp.y) * multiply);
 
+        if (temp == Vector2.zero)
+            temp = new Vector2(Random.Range(-speed, speed), Random.Range(-speed, speed));
+        
+        temp = new Vector2(temp.x + Random.Range(-temp.x, temp.x) * multiply, temp.y + Random.Range(-temp.y, temp.y) * multiply);
         _rb.velocity = temp;
-        _isStarted = true;
     }
 
     #region Velocity

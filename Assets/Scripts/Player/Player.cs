@@ -30,7 +30,10 @@ public class Player : MonoBehaviour
     #region Magnette и все все все
     public void SetMagnette(float value) => _isMagnette = value > 0;
 
-    public bool TrySetMagnetteBall()
+    /// <summary>
+    /// Можно ли примагнитить мяч
+    /// </summary>
+    public bool CanSetMagnetteBall()
     {
         if (!_isMagnette) return false;
         if (_haveMagnetteBall) return false;

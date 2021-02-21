@@ -293,6 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 2656979275173626643}
+  trail: {fileID: 2656979274511960889}
+  startSpeed: 5
   speed: 5
 --- !u!114 &2621786386057240417
 MonoBehaviour:
@@ -320,3 +322,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diffX: 100
   speed: 2
+  drawGizmo: 1

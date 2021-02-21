@@ -213,6 +213,11 @@ PrefabInstance:
       propertyPath: lifes
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -9200396986619791741, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
+        type: 3}
+      propertyPath: score
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6988277596948918128, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
         type: 3}
       propertyPath: m_RootOrder
@@ -456,6 +461,11 @@ PrefabInstance:
       propertyPath: lifes
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -9200396986619791741, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
+        type: 3}
+      propertyPath: score
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6988277596948918128, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
         type: 3}
       propertyPath: m_RootOrder
@@ -574,7 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonuses:
-  - {fileID: 11400000, guid: 46405b33bc94adf48b5a860378fb1f4e, type: 2}
+  - {fileID: 11400000, guid: f1cea967a0af22d46a0c2ba6103c2046, type: 2}
   bonusPrefab: {fileID: 6439112867364957646, guid: 21d7d39aaf69f1741988a0860386934e,
     type: 3}
   multyplyGoodBonus: 67
@@ -631,7 +641,7 @@ PrefabInstance:
     - target: {fileID: -9200396986619791741, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
         type: 3}
       propertyPath: score
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6988277596948918128, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
         type: 3}
@@ -711,7 +721,17 @@ PrefabInstance:
     - target: {fileID: -9200396986619791741, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
         type: 3}
       propertyPath: lifes
-      value: 3
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -9200396986619791741, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
+        type: 3}
+      propertyPath: score
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9200396986619791741, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
+        type: 3}
+      propertyPath: isImmortal
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6988277596948918128, guid: 0b224ab86de0f8d44bf8255cb86c76f4,
         type: 3}
@@ -904,7 +924,7 @@ PrefabInstance:
     - target: {fileID: 2656979275173626642, guid: b49c39c3b7b251a4d85c0a9102833803,
         type: 3}
       propertyPath: startSpeed
-      value: 4.96
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2656979275173626643, guid: b49c39c3b7b251a4d85c0a9102833803,
         type: 3}
@@ -1132,7 +1152,7 @@ PrefabInstance:
     - target: {fileID: 3940767203177050306, guid: 7ddb563f02aa29946932c267940cc0c9,
         type: 3}
       propertyPath: life
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5181603082535738186, guid: 7ddb563f02aa29946932c267940cc0c9,
         type: 3}

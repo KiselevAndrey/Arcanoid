@@ -22,7 +22,10 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         SetDamage();
-        if (!player.TrySetMagnetteBall()) move.GetRandomForce(0.5f);
+        //if (!player.CanSetMagnetteBall())
+        //{
+        //    move.StartBall(true);
+        //}
     }
     #endregion
 
@@ -51,10 +54,11 @@ public class Ball : MonoBehaviour
 
     void CheckMagnette(Vector2 contactPoint)
     {
-        if (player.TrySetMagnetteBall())
+        if (player.CanSetMagnetteBall())
         {
             player.HaveMagnetteBall(true);
-            move.NewMagnettePoint(contactPoint);
+            move.NewMagnettePoint(contactPoint*.9f);
+            move.UpdateVelocity(0);
         }
     }
     #endregion
@@ -62,10 +66,17 @@ public class Ball : MonoBehaviour
     #region Дейстивия из-за манипуляций игрока
     public void Duplicate()
     {
-        Ball ball = Instantiate(this);
-        ball.move.SetVelocity(move.GetVelosity());
-        ball.move.GetRandomForce(0.5f);
-        gameManager.balls.Add(ball);
+        Ball newBall = Instantiate(this);
+        BeforeInstantiate(newBall);
+        gameManager.balls.Add(newBall);
+        //gameManager.Paused(); 
+    }
+
+    void BeforeInstantiate(Ball newBall)
+    {
+        newBall.move.SetVelocity(move.GetVelosity());
+        newBall.move.BallIsStarted(true);
+        newBall.move.GetRandomForce(0.5f);
     }
     #endregion
 

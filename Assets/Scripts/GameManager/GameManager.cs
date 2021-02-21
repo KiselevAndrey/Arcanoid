@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Отработка действий при паузе
-    void Paused()
+    public void Paused()
     {
         _isPause = !_isPause;
         pauseMenu.SetActive(_isPause);
