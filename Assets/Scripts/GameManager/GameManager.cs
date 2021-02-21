@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,13 +8,11 @@ public class GameManager : MonoBehaviour
     [Header("Данные по игре")]
     [SerializeField] GameOptionsSO gameOptions;
 
-    [Header("Данные по уровню")]
-    [SerializeField] GameObject pauseMenu;
-
     [HideInInspector] public List<Player> players;
     [HideInInspector] public List<Ball> balls;
 
     GameOverLog _gameOverLog;
+    Pause _pause;
     bool _isPause;
 
     #region Awake Start Update
@@ -25,6 +24,7 @@ public class GameManager : MonoBehaviour
         SetIndex();
 
         _gameOverLog = GetComponent<GameOverLog>();
+        _pause = GetComponent<Pause>();
     }
 
     private void Start()
@@ -55,8 +55,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space))
-            Paused();
+            _pause.Paused(); 
     }
+
     #endregion
 
     /// <summary>
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
             balls[i].indexInGame = i;
     }
 
+    #region GameOver
     /// <summary>
     /// Что происходит при завершении игры
     /// </summary>
@@ -85,19 +87,12 @@ public class GameManager : MonoBehaviour
             players[i].GameOver();
         }
     }
-
-    // Отработка действий при паузе
-    public void Paused()
-    {
-        _isPause = !_isPause;
-        pauseMenu.SetActive(_isPause);
-
-        Time.timeScale = _isPause ? 0 : 1;
-    }
+    #endregion
 
     public void StartNewGame()
     {
         gameOptions.gameStatus = GameStatus.New;
+        gameOptions.maxLevel = 1;
         ManagerSceneStatic.LoadScene(LVLNames.IntToLVLName(1));
     }
 }

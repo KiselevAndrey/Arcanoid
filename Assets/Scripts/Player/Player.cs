@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public PlayerStats stats;
     public Savior savior;
 
-    bool _isMagnette = true;
+    bool _isMagnette;
     bool _haveMagnetteBall;
     
     public void Hit()

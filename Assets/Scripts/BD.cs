@@ -7,6 +7,8 @@ public static class AxesNames
 public static class TagsNames
 {
     public const string Ball = "Ball";
+    public const string Block = "Block";
+    public const string Bonus = "Bonus";
     public const string Wall = "Wall";
     public const string Player = "Player";
     public const string Respawn = "Respawn";
@@ -27,3 +29,8 @@ public static class LVLNames
     public static int LVLNameToInt(string sceneName) => sceneName[0];
 }
 
+public static class MixerGroup
+{
+    public static string VolumeBackGround = "Volume BackGround";
+    public static string VolumeMaster = "Volume Master";
+}

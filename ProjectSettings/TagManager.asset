@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Block Instantiater
   - Savior
+  - Block
+  - Bonus
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     public BallMove move;
     public BallStats stats;
     public BallStartDirection startDirection;
+    public BallSound sound;
 
     [HideInInspector] public Player player;
 
@@ -87,17 +88,26 @@ public class Ball : MonoBehaviour
         {
             case TagsNames.Wall:
                 move.HitWall();
+                sound.PlayOneShot(BallStatus.hit);
                 return;
 
             case TagsNames.Respawn:
                 player = collision.gameObject.GetComponentInParent<Player>();
                 TryDeleteBall();
+                sound.PlayOneShot(BallStatus.dead);
                 break;
 
             case TagsNames.Player:
                 player = collision.gameObject.GetComponentInParent<Player>();
                 SetDamage();
                 CheckMagnette(transform.position - player.move.transform.position);
+                sound.PlayOneShot(BallStatus.hit);
+                break;
+
+            case TagsNames.Savior:
+            case TagsNames.Block:
+            case TagsNames.Bonus:
+                sound.PlayOneShot(BallStatus.hit);
                 break;
         }
 
@@ -111,6 +121,10 @@ public class Ball : MonoBehaviour
             case TagsNames.Player:
                 player = collision.gameObject.GetComponentInParent<Player>();
                 SetDamage();
+                break;
+
+            case TagsNames.Block:
+                sound.PlayOneShot(BallStatus.hit);
                 break;
         }
     }

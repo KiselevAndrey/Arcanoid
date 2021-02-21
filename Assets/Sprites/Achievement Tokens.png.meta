@@ -10,7 +10,7 @@ TextureImporter:
     second: Achievement Tokens_1
   - first:
       213: 5529718264923700223
-    second: Achievement Tokens_2
+    second: Magnette
   - first:
       213: 2094782814333368354
     second: Achievement Tokens_3
@@ -192,7 +192,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Achievement Tokens_2
+      name: Magnette
       rect:
         serializedVersion: 2
         x: 205
@@ -406,7 +406,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6
-        y: 8
+        y: 6
         width: 92
         height: 105
       alignment: 0
@@ -494,7 +494,7 @@ TextureImporter:
         width: 4
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
