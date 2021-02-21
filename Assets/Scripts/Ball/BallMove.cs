@@ -6,7 +6,8 @@ public class BallMove : MonoBehaviour
     [SerializeField] Ball ball;
 
     [SerializeField, Range(1, 10)] public float startSpeed;
-    [HideInInspector] public float speed;
+    //[HideInInspector] 
+    public float speed;
 
     Rigidbody2D _rb;
     Collider2D _collider;
@@ -14,6 +15,7 @@ public class BallMove : MonoBehaviour
 
     bool _isStarted;
     int _touchWallCount;
+    Vector2 _magnettePoint;
 
     #region Awake Update
     private void Awake()
@@ -44,10 +46,9 @@ public class BallMove : MonoBehaviour
     {
         UpdateVelocity(0);
         ZeroingTouches();
-        StartBall(false);
+        BallIsStarted(false);
 
-        ball.startDirection.drawGizmo = true;
-        _isStarted = false;
+        _magnettePoint = new Vector2(0, ball.player.move.transform.localScale.y);
     }
 
     public void ZeroingTouches() => _touchWallCount = 0;
@@ -58,22 +59,30 @@ public class BallMove : MonoBehaviour
 
     void PasteToPlayerPlatform()
     {
-        transform.position = new Vector2(ball.player.move.transform.position.x, ball.player.move.transform.position.y + ball.player.move.transform.localScale.y);
+        Vector2 pastePoint = (Vector2)ball.player.move.transform.position + _magnettePoint;
+        transform.position = new Vector2(pastePoint.x, pastePoint.y);
 
         if (Input.GetMouseButtonUp(0))
         {
-            StartBall(true);
+            BallIsStarted(true);
             _rb.velocity = ball.startDirection.GetForseDirection() - transform.position;
-            _isStarted = true;
-            ball.startDirection.drawGizmo = false;
+            ball.player.HaveMagnetteBall(false);
         }
+    }
+
+    public void NewMagnettePoint(Vector2 vector2)
+    {
+        _magnettePoint = vector2;
+        BallIsStarted(false);
     }
     #endregion
 
-    void StartBall(bool value)
+    void BallIsStarted(bool value)
     {
+        _isStarted = value;
         _trail.gameObject.SetActive(value);
         _collider.isTrigger = !value;
+        ball.startDirection.drawGizmo = !value;
     }
 
     public void GetRandomForce(float multiply = 1)

@@ -38,7 +38,7 @@ public class BlockCounter : MonoBehaviour
     //    if (block.GetLifes() == 0)
     //    {
     //        string sceneName = SceneManager.GetActiveScene().name;
-    //        int lvl = int.Parse(sceneName[sceneName.Length - 1].ToString());
+    //        int lvl = LVLNames.LVLNameToInt(sceneName);
     //        block.SetLifes(lvl);
     //    }
     //}

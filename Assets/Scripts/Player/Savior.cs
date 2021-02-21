@@ -28,6 +28,7 @@ public class Savior : MonoBehaviour
         if (life <= 0)
         {
             gameObject.SetActive(false);
+            life = 0;
             return;
         }
         else if (!gameObject.activeSelf) gameObject.SetActive(true);

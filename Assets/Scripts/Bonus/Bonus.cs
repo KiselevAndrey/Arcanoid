@@ -124,6 +124,14 @@ public class Bonus : MonoBehaviour
             case BonusName.DublicateBall:
                 DoublerBall(collision);
                 break;
+
+            case BonusName.SaviorLife:
+                collision.gameObject.GetComponentInParent<Player>().savior.AddLife((int)_force);
+                break;
+
+            case BonusName.Magnette:
+                collision.gameObject.GetComponentInParent<Player>().SetMagnette(_force);
+                break;
         }
 
         // бонус за вредность

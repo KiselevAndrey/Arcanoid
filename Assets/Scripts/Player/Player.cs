@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public PlayerScore score;
     public PlayerStats stats;
     public Savior savior;
+
+    bool _isMagnette = true;
+    bool _haveMagnetteBall;
     
     public void Hit()
     {
@@ -23,4 +26,17 @@ public class Player : MonoBehaviour
     {
         score.GameOver();
     }
+
+    #region Magnette и все все все
+    public void SetMagnette(float value) => _isMagnette = value > 0;
+
+    public bool TrySetMagnetteBall()
+    {
+        if (!_isMagnette) return false;
+        if (_haveMagnetteBall) return false;
+        return true;
+    }
+
+    public void HaveMagnetteBall(bool value) => _haveMagnetteBall = value;
+    #endregion
 }

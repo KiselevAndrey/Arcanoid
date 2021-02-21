@@ -365,12 +365,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4540635447109932930, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 102900000, guid: 74237eb666e78794b91cccf0181ab462,
-        type: 3}
     - target: {fileID: 4540635447534144675, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
         type: 3}
       propertyPath: m_Name
@@ -580,7 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonuses:
-  - {fileID: 11400000, guid: f1cea967a0af22d46a0c2ba6103c2046, type: 2}
+  - {fileID: 11400000, guid: 46405b33bc94adf48b5a860378fb1f4e, type: 2}
   bonusPrefab: {fileID: 6439112867364957646, guid: 21d7d39aaf69f1741988a0860386934e,
     type: 3}
   multyplyGoodBonus: 67
@@ -1138,7 +1132,7 @@ PrefabInstance:
     - target: {fileID: 3940767203177050306, guid: 7ddb563f02aa29946932c267940cc0c9,
         type: 3}
       propertyPath: life
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5181603082535738186, guid: 7ddb563f02aa29946932c267940cc0c9,
         type: 3}

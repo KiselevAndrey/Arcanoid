@@ -13,18 +13,20 @@ public class Ball : MonoBehaviour
 
     [HideInInspector] public Player player;
 
-    private void Start()
+    #region Awake Start
+    private void Awake()
     {
         player = gameManager.players[0];
-        SetDamage();
     }
 
-    void SetDamage()
+    private void Start()
     {
-        stats.Damage = player.stats.GetDamage();
-        move.speed = move.startSpeed + stats.Damage;
+        SetDamage();
+        if (!player.TrySetMagnetteBall()) move.GetRandomForce(0.5f);
     }
+    #endregion
 
+    #region Взаимодейстивия с зоной падения мяча BallTriger
     public void TryDeleteBall()
     {
         if (gameManager.balls.Count > gameManager.players.Count)
@@ -38,7 +40,26 @@ public class Ball : MonoBehaviour
             move.Zeroing();
         }
     }
+    #endregion
 
+    #region Взаимодейстивия с игроком
+    void SetDamage()
+    {
+        stats.Damage = player.stats.GetDamage();
+        move.speed = move.startSpeed + stats.Damage;
+    }
+
+    void CheckMagnette(Vector2 contactPoint)
+    {
+        if (player.TrySetMagnetteBall())
+        {
+            player.HaveMagnetteBall(true);
+            move.NewMagnettePoint(contactPoint);
+        }
+    }
+    #endregion
+
+    #region Дейстивия из-за манипуляций игрока
     public void Duplicate()
     {
         Ball ball = Instantiate(this);
@@ -46,6 +67,7 @@ public class Ball : MonoBehaviour
         ball.move.GetRandomForce(0.5f);
         gameManager.balls.Add(ball);
     }
+    #endregion
 
     #region OnEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +86,7 @@ public class Ball : MonoBehaviour
             case TagsNames.Player:
                 player = collision.gameObject.GetComponentInParent<Player>();
                 SetDamage();
+                CheckMagnette(transform.position - player.move.transform.position);
                 break;
         }
 

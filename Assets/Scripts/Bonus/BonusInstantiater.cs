@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public enum BonusName { Random, Damage, SpeedPlatform, Score, DublicateBall }
+public enum BonusName { Random, Damage, SpeedPlatform, Score, DublicateBall, SaviorLife, Magnette }
 
 public class BonusInstantiater : MonoBehaviour
 {
