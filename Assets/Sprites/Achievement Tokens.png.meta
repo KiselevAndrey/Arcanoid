@@ -46,7 +46,7 @@ TextureImporter:
     second: Speed Platform
   - first:
       213: 5230181862808040928
-    second: Doubler Ball
+    second: Dublicate Ball
   - first:
       213: 9098267358219069538
     second: Achievement Tokens_15
@@ -444,7 +444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Doubler Ball
+      name: Dublicate Ball
       rect:
         serializedVersion: 2
         x: 206

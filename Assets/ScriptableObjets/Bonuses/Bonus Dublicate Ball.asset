@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fcc12dc5e78fe84489edf94a23b6854, type: 3}
-  m_Name: Bonus Doubler Ball
+  m_Name: Bonus Dublicate Ball
   m_EditorClassIdentifier: 
   sprite: {fileID: 5230181862808040928, guid: 31865a8ebdab51649a399a3ce283e4d4, type: 3}
   bonusName: 4
   multiply: 2
-  isPositive: 0

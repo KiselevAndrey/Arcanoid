@@ -7,7 +7,8 @@ public class PlayerSO : ScriptableObject
     [Header("Стартовые характеристики")]
     [Min(1)] public int startLifes;
     [Min(1)] public int startDamage;
-    [Min(1)] public int startSpeed;
+    [Min(1)] public float startSpeed;
+    [Min(1)] public int startSaviorLife;
 
     [Header("Счет")]
     public int score;

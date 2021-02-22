@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public List<Player> players;
     [HideInInspector] public List<Ball> balls;
+    [HideInInspector] public LVLOptions lvlOptions;
 
     GameOverLog _gameOverLog;
     Pause _pause;
-    LVLOptions _lvlOptions;
 
     #region Awake Start Update
     private void Awake()
@@ -25,29 +25,26 @@ public class GameManager : MonoBehaviour
 
         _gameOverLog = GetComponent<GameOverLog>();
         _pause = GetComponent<Pause>();
-        _lvlOptions = GetComponentInChildren<LVLOptions>();
+        lvlOptions = GetComponentInChildren<LVLOptions>();
     }
 
     private void Start()
     {
-        // обнуление игроков
-        switch (gameOptions.gameStatus)
+        for (int i = 0; i < players.Count; i++)
         {
-            case GameStatus.New:
-                for (int i = 0; i < players.Count; i++)
-                {
-                    players[i].LoadPlayer(_lvlOptions.lvlStats);
-                    players[i].playerSO.NewGame();
-                }
-                break;
+            players[i].LoadPlayer(lvlOptions.lvlStats);    // загрузка статов игрока из данных сцены
 
-            case GameStatus.Load:
-                for (int i = 0; i < players.Count; i++)
-                {
-                    players[i].LoadPlayer(_lvlOptions.lvlStats);
+            // обнуление игроков
+            switch (gameOptions.gameStatus)
+            {
+                case GameStatus.New:
+                    players[i].playerSO.NewGame();
+                    break;
+
+                case GameStatus.Load:
                     players[i].playerSO.NewRound();
-                }
-                break;
+                    break;
+            }
         }
 
         // обнуление мячей
@@ -96,11 +93,11 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    // загрузка новой игры с первого уровня
     public void StartNewGame()
     {
         gameOptions.gameStatus = GameStatus.New;
         gameOptions.maxLevel = 1;
-
 
         ManagerSceneStatic.LoadScene(LVLNames.IntToLVLName(1));
     }

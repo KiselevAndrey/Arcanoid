@@ -15,16 +15,12 @@ public class PlayerMove : MonoBehaviour
     public float leftBoard;
     public float rightBoard;
 
-    Ball _ball;
     float _startPosY;
 
     #region Start Update
     void Start()
     {
         _startPosY = transform.position.y;
-
-        if (movingType == MovingType.Ball)
-            _ball = player.gameManager.balls[player.indexInGame];
     }
 
     void Update()
@@ -51,7 +47,20 @@ public class PlayerMove : MonoBehaviour
                 break;
 
             case MovingType.Ball:
-                Vector2 ballPos = _ball.transform.position;
+                Ball nearestBall = player.gameManager.balls[0];
+                float minDistance = ((Vector2)(nearestBall.transform.position - transform.position)).magnitude;
+
+                for (int i = 1; i < player.gameManager.balls.Count; i++)
+                {
+                    float tempDistance = ((Vector2)(player.gameManager.balls[i].transform.position - transform.position)).magnitude;
+                    if(tempDistance < minDistance)
+                    {
+                        nearestBall = player.gameManager.balls[i];
+                        minDistance = tempDistance;
+                    }
+                }
+
+                Vector2 ballPos = nearestBall.transform.position;
                 ballPos.y = _startPosY;
                 newPosition = ballPos;
                 break;

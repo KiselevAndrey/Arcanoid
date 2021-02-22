@@ -8,6 +8,11 @@ public class GameOverLog : MonoBehaviour
 
     [SerializeField] GameObject winLog;
 
+    [Header("Счета")]
+    [SerializeField] Text bestScoreText;
+    [SerializeField] Text currentScoreText;
+
+
     GameManager _gameManager;
 
     #region Awake Start
@@ -43,13 +48,17 @@ public class GameOverLog : MonoBehaviour
 
         for (int i = 1; i < _gameManager.players.Count; i++)
         {
-            if (bestPlayer.playerSO.score < _gameManager.players[i].playerSO.score)
+            if (bestPlayer.playerSO.currentScore < _gameManager.players[i].playerSO.currentScore)
             {
                 bestPlayer = _gameManager.players[i];
             }
         }
 
-        string text = "Лучший счет у игрока: " + bestPlayer.gameObject.name + "!!\n У него очков: " + bestPlayer.playerSO.score;
+        string text = "Лучший счет у игрока: " + bestPlayer.gameObject.name + "!!\n У него очков: " + bestPlayer.playerSO.currentScore;
         scoreText.text = text;
+
+        _gameManager.lvlOptions.UpdateBestScore(bestPlayer.playerSO.currentScore);
+        bestScoreText.text = _gameManager.lvlOptions.lvlStats.bestScore.ToString();
+        currentScoreText.text = bestPlayer.playerSO.currentScore.ToString();
     }
 }

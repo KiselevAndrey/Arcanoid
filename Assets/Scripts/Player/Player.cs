@@ -28,7 +28,15 @@ public class Player : MonoBehaviour
         stats.SetLife(lvlStats.startLifes);
         stats.SetDamage(lvlStats.startDamage);
         move.SetSpeed(lvlStats.startSpeed);
-        savior.SetLife(lvlStats.saviorLifes);
+        savior.SetLife(lvlStats.startSaviorLifes);
+    }
+
+    public void LoadPlayer()
+    {
+        stats.SetLife(playerSO.startLifes);
+        stats.SetDamage(playerSO.startDamage);
+        move.SetSpeed(playerSO.startSpeed);
+        savior.SetLife(playerSO.startSaviorLife);
     }
 
     public void GameOver()

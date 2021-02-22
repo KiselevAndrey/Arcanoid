@@ -726,6 +726,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonuses:
   - {fileID: 11400000, guid: f1cea967a0af22d46a0c2ba6103c2046, type: 2}
+  - {fileID: 11400000, guid: e56b2be9a0e0cf641ac4f65ffa0d9e04, type: 2}
+  - {fileID: 11400000, guid: 98357580a9fdc0c44a6fccd58f7e2c69, type: 2}
+  - {fileID: 11400000, guid: 95e7b5ed2ea36ff44800a128d4297688, type: 2}
+  - {fileID: 11400000, guid: 46405b33bc94adf48b5a860378fb1f4e, type: 2}
   bonusPrefab: {fileID: 6439112867364957646, guid: 21d7d39aaf69f1741988a0860386934e,
     type: 3}
   multyplyGoodBonus: 67
@@ -742,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 159228109}
-  bonusChance: 100
+  bonusChance: 60
 --- !u!1001 &1365232557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -778,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 5603675470494223157, guid: d38d1f1e85b197244b4610a26f1518ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.98
+      value: 1.06
       objectReference: {fileID: 0}
     - target: {fileID: 5603675470494223157, guid: d38d1f1e85b197244b4610a26f1518ba,
         type: 3}
@@ -1219,6 +1223,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1515839059806971323, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: lvlStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 33cf82f1c63ebdc4e8563bc53b2cf586,
+        type: 2}
+    - target: {fileID: 4540635447109932930, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 102900000, guid: c14224198d7e4414d908db8d5bdd51b3,
+        type: 3}
     - target: {fileID: 4540635447534144675, guid: 2b4072c03e4c7654a8ef3c968b72e45c,
         type: 3}
       propertyPath: m_Name
