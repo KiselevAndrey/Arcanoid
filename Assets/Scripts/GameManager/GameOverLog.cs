@@ -35,6 +35,7 @@ public class GameOverLog : MonoBehaviour
         if (win)
         {
             winLog.SetActive(true);
+            _gameManager.gameOptions.UpdateMaxLVL(int.Parse(_gameManager.lvlOptions.lvlStats.name[_gameManager.lvlOptions.lvlStats.name.Length - 1].ToString()) + 1);
         }
         else
         {

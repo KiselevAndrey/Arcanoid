@@ -6,6 +6,8 @@ public enum GameStatus { New, Load }
 public class GameOptionsSO : ScriptableObject
 {
     public int playersCount;
-    public int maxLevel;
+    [Min(1)] public int maxLevel;
     public GameStatus gameStatus;
+
+    public void UpdateMaxLVL(int value) => maxLevel = Mathf.Max(maxLevel, value);
 }

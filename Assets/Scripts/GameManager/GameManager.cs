@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Данные по игре")]
-    [SerializeField] GameOptionsSO gameOptions;
+    [SerializeField] public GameOptionsSO gameOptions;
 
     [HideInInspector] public List<Player> players;
     [HideInInspector] public List<Ball> balls;
