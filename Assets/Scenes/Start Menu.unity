@@ -2042,7 +2042,7 @@ GameObject:
   - component: {fileID: 911971031}
   - component: {fileID: 911971030}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Menu Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2869,6 +2869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1239789735}
+  - component: {fileID: 1239789736}
   m_Layer: 5
   m_Name: Start Menu
   m_TagString: Untagged
@@ -2898,6 +2899,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1239789736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239789734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ad8e6c2c94cf8429d8a442abd5fd4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24300002, guid: 84680ee32b6dc964eaf643fe10ebd815, type: 2}
+  normal: {fileID: 24500006, guid: 84680ee32b6dc964eaf643fe10ebd815, type: 2}
 --- !u!1 &1260659952
 GameObject:
   m_ObjectHideFlags: 0

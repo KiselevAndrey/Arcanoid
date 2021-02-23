@@ -130,7 +130,7 @@ public class Bonus : MonoBehaviour
                 break;
 
             case BonusName.Magnette:
-                collision.gameObject.GetComponentInParent<Player>().SetMagnette(_force);
+                collision.gameObject.GetComponent<PlayerMagnette>().SetMagnette(_force);
                 break;
         }
 

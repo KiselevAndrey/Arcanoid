@@ -2,9 +2,11 @@
 
 public class BallStartDirection : MonoBehaviour
 {
+    public LineRenderer startDirectionLine;
+
     [SerializeField, Min(1)] int diffX;
     [SerializeField, Min(1)] int speed;
-    [HideInInspector] public bool drawGizmo = true;
+    
 
     int x, y;
     float z;
@@ -21,24 +23,18 @@ public class BallStartDirection : MonoBehaviour
 
     void Update()
     {
-        if (drawGizmo)
+        if (Time.timeScale != 0)
         {
-            if (Time.timeScale != 0)
-            {
-                ChangeCoordinate();
-                target = new Vector3(x, y, z).normalized + transform.position;
-            }
+            ChangeCoordinate();
+            target = new Vector3(x, y, z).normalized + transform.position;
+
+            startDirectionLine.SetPosition(0, new Vector3(0, 0, z + 1));
+            startDirectionLine.SetPosition(1, new Vector3(x, y, z + 1).normalized);
         }
-        else
-            target = transform.position;
+       
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, target);
-    }
-
-    void ChangeCoordinate()
+   void ChangeCoordinate()
     {
         switch (upX)
         {

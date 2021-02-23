@@ -64,7 +64,7 @@ public class BallMove : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             StartBall(false);
-            ball.player.HaveMagnetteBall(false);
+            ball.player.magnette.HaveMagnetteBall(false);
         }
     }
 
@@ -98,7 +98,9 @@ public class BallMove : MonoBehaviour
         _isStarted = value;
         _collider.isTrigger = !value;
         trail.gameObject.SetActive(value);
-        ball.startDirection.drawGizmo = !value;
+
+        ball.startDirection.startDirectionLine.enabled = !value;
+        ball.startDirection.enabled = !value;
     }
     #endregion
 

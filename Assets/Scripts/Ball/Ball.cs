@@ -55,9 +55,9 @@ public class Ball : MonoBehaviour
 
     void CheckMagnette(Vector2 contactPoint)
     {
-        if (player.CanSetMagnetteBall())
+        if (player.magnette.CanSetMagnetteBall())
         {
-            player.HaveMagnetteBall(true);
+            player.magnette.HaveMagnetteBall(true);
             move.NewMagnettePoint(contactPoint*.9f);
             move.UpdateVelocity(0);
         }

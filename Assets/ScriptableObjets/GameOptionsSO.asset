@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameOptionsSO
   m_EditorClassIdentifier: 
   playersCount: 0
-  maxLevel: 2
+  maxLevel: 1
   gameStatus: 0

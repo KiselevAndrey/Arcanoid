@@ -12,10 +12,9 @@ public class Player : MonoBehaviour
     public PlayerScore score;
     public PlayerStats stats;
     public Savior savior;
+    public PlayerMagnette magnette;
 
-    bool _isMagnette;
-    bool _haveMagnetteBall;
-    
+
     public void Hit()
     {
         score.Hit();
@@ -45,19 +44,5 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region Magnette и все все все
-    public void SetMagnette(float value) => _isMagnette = value > 0;
-
-    /// <summary>
-    /// Можно ли примагнитить мяч
-    /// </summary>
-    public bool CanSetMagnetteBall()
-    {
-        if (!_isMagnette) return false;
-        if (_haveMagnetteBall) return false;
-        return true;
-    }
-
-    public void HaveMagnetteBall(bool value) => _haveMagnetteBall = value;
-    #endregion
+    
 }
