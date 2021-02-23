@@ -12,6 +12,9 @@ public class Ball : MonoBehaviour
     public BallStartDirection startDirection;
     public BallSound sound;
 
+    [Header("Доп элементы")]
+    [SerializeField] GameObject hitParticle;
+
     [HideInInspector] public Player player;
 
     #region Awake Start
@@ -84,6 +87,8 @@ public class Ball : MonoBehaviour
     #region OnEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
+
         switch (collision.gameObject.tag)
         {
             case TagsNames.Wall:
@@ -122,11 +127,19 @@ public class Ball : MonoBehaviour
                 player = collision.gameObject.GetComponentInParent<Player>();
                 SetDamage();
                 break;
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
             case TagsNames.Block:
                 sound.PlayOneShot(BallStatus.hit);
+                Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
                 break;
         }
+
     }
     #endregion
 }
