@@ -411,6 +411,7 @@ MonoBehaviour:
   stats: {fileID: 2621786386057240417}
   startDirection: {fileID: 4163902489831918445}
   sound: {fileID: 620603735929916769}
+  hitParticle: {fileID: 100000, guid: 757b80d6963a10341a164309ffc8cd52, type: 3}
   player: {fileID: 0}
 --- !u!114 &2656979275173626642
 MonoBehaviour:

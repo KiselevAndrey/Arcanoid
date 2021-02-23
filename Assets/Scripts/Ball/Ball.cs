@@ -127,19 +127,16 @@ public class Ball : MonoBehaviour
                 player = collision.gameObject.GetComponentInParent<Player>();
                 SetDamage();
                 break;
-        }
-    }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        switch (collision.gameObject.tag)
-        {
             case TagsNames.Block:
                 sound.PlayOneShot(BallStatus.hit);
-                Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
+                //print(collision.transform.position);
+                //print(transform.position);
+                //print((collision.transform.position - transform.position) / 2f);
+                //Time.timeScale = 0f;
+                //Instantiate(hitParticle, (collision.transform.position - transform.position) / 2f, Quaternion.identity);
                 break;
         }
-
     }
     #endregion
 }
