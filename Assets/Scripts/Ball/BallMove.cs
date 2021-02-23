@@ -129,7 +129,7 @@ public class BallMove : MonoBehaviour
         _touchWallCount++;
         if (_touchWallCount > 5)
         {
-            GetRandomForce();
+            _rb.velocity = new Vector2(Random.Range(-100, 100), Random.Range(-100, 100));
             ZeroingTouches();
         }
     }
