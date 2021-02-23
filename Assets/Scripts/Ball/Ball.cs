@@ -87,11 +87,11 @@ public class Ball : MonoBehaviour
     #region OnEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
 
         switch (collision.gameObject.tag)
         {
             case TagsNames.Wall:
+                Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
                 move.HitWall();
                 sound.PlayOneShot(BallStatus.hit);
                 return;
@@ -103,6 +103,7 @@ public class Ball : MonoBehaviour
                 break;
 
             case TagsNames.Player:
+                Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
                 player = collision.gameObject.GetComponentInParent<Player>();
                 SetDamage();
                 CheckMagnette(transform.position - player.move.transform.position);
@@ -110,10 +111,14 @@ public class Ball : MonoBehaviour
                 break;
 
             case TagsNames.Savior:
-            case TagsNames.Block:
-            case TagsNames.Bonus:
+                Instantiate(hitParticle, collision.contacts[0].point, Quaternion.identity);
                 sound.PlayOneShot(BallStatus.hit);
                 break;
+
+            //case TagsNames.Block:
+            //case TagsNames.Bonus:
+            //    sound.PlayOneShot(BallStatus.hit);
+            //    break;
         }
 
         move.ZeroingTouches();
