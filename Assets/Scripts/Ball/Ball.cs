@@ -135,11 +135,8 @@ public class Ball : MonoBehaviour
 
             case TagsNames.Block:
                 sound.PlayOneShot(BallStatus.hit);
-                //print(collision.transform.position);
-                //print(transform.position);
-                //print((collision.transform.position - transform.position) / 2f);
-                //Time.timeScale = 0f;
-                //Instantiate(hitParticle, (collision.transform.position - transform.position) / 2f, Quaternion.identity);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, move.GetVelosity());
+                Instantiate(hitParticle, hit.point, Quaternion.identity);
                 break;
         }
     }
