@@ -175,6 +175,7 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -321,6 +322,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -411,7 +413,7 @@ MonoBehaviour:
   stats: {fileID: 2621786386057240417}
   startDirection: {fileID: 4163902489831918445}
   sound: {fileID: 620603735929916769}
-  hitParticle: {fileID: 100000, guid: 757b80d6963a10341a164309ffc8cd52, type: 3}
+  hitParticle: {fileID: 100000, guid: 979632a27455af442bd2d8f36eb0ffce, type: 3}
   player: {fileID: 0}
 --- !u!114 &2656979275173626642
 MonoBehaviour:
@@ -517,6 +519,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

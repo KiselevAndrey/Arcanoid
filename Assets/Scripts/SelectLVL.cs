@@ -28,8 +28,8 @@ public class SelectLVL : MonoBehaviour
         }
     }
 
-    public void LoadLVL(Button btn)
+    public void LoadLVL(int btnNumber)
     {
-        ManagerSceneStatic.LoadScene(LVLNames.IntToLVLName(int.Parse(btn.name[0].ToString())));
+        ManagerSceneStatic.LoadScene(LVLNames.IntToLVLName(btnNumber));
     }
 }
